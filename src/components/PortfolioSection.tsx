@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { cn } from "@/lib/utils";
+import { useInView } from "@/hooks/use-in-view";
+import SectionTitle from "@/components/SectionTitle";
 import {
   Dialog,
   DialogContent,
@@ -7,9 +10,9 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-import plamont from "../assets/images/plamont.png";
-import icoop from "../assets/images/icoop.png";
-import lecardEstudante from "../assets/images/lecardEstudante.png";
+import plamont from "../assets/images/plamont.webp";
+import icoop from "../assets/images/icoop.webp";
+import lecardEstudante from "../assets/images/lecardEstudante.webp";
 
 type Project = {
   id: number;
@@ -21,37 +24,10 @@ type Project = {
   descriptionImage: string;
 };
 
-const ProjectCard = ({
-  project,
-  onClick,
-}: {
-  project: Project;
-  onClick: (project: Project) => void;
-}) => {
-  return (
-    <div
-      className="bg-secondary rounded-lg overflow-hidden card-hover cursor-pointer"
-      onClick={() => onClick(project)}
-    >
-      <div className="h-48 overflow-hidden">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      <div className="p-4">
-        <h3 className="text-lg font-semibold mb-1">{project.title}</h3>
-        <p className="text-sm text-highlight">{project.company}</p>
-      </div>
-    </div>
-  );
-};
-
 const PortfolioSection = () => {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const { ref, inView } = useInView<HTMLDivElement>(0.1);
 
   const projects: Project[] = [
     {
@@ -96,17 +72,40 @@ const PortfolioSection = () => {
   ];
 
   return (
-    <section id="portfolio" className="section py-16 md:py-24">
+    <section id="portfolio" className="section">
       <div className="container">
-        <h2 className="section-title">{t("portfolio.title")}</h2>
+        <SectionTitle>{t("portfolio.title")}</SectionTitle>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-          {projects.map((project) => (
-            <ProjectCard
+        <div ref={ref} className="grid sm:grid-cols-2 gap-6 lg:gap-8">
+          {projects.map((project, index) => (
+            <button
               key={project.id}
-              project={project}
-              onClick={setSelectedProject}
-            />
+              type="button"
+              onClick={() => setSelectedProject(project)}
+              className="group pane pane-interactive overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              {/* Momento focal: a tela acende quando a vitrine entra em cena. */}
+              <div className="h-64 lg:h-80 overflow-hidden bg-background">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  loading="lazy"
+                  className={cn(
+                    "reveal-lit w-full h-full object-cover",
+                    "group-hover:scale-[1.03] group-hover:duration-500",
+                    inView && "is-in"
+                  )}
+                  style={{ transitionDelay: `${index * 140}ms` }}
+                />
+              </div>
+
+              <div className="p-6">
+                <h3 className="type-title">{project.title}</h3>
+                <p className="mt-2 type-label text-muted-foreground">
+                  {project.company}
+                </p>
+              </div>
+            </button>
           ))}
         </div>
 
@@ -115,32 +114,38 @@ const PortfolioSection = () => {
           onOpenChange={() => setSelectedProject(null)}
         >
           {selectedProject && (
-            <DialogContent className="sm:max-w-3xl">
-              <DialogHeader>
-                <DialogTitle>{selectedProject.title}</DialogTitle>
-              </DialogHeader>
+            <DialogContent
+              className="sm:max-w-3xl p-0 gap-0 overflow-hidden max-h-[90vh] shadow-overlay-drop
+                [&>button]:z-20 [&>button]:right-4 [&>button]:top-4 [&>button]:rounded-full
+                [&>button]:bg-background/80 [&>button]:backdrop-blur-sm [&>button]:p-2 [&>button]:opacity-90"
+            >
+              <div className="bg-secondary shrink-0">
+                <img
+                  src={selectedProject.descriptionImage || selectedProject.image}
+                  alt={selectedProject.title}
+                  className="w-full max-h-[240px] sm:max-h-[420px] object-contain"
+                />
+              </div>
 
-              <div className="mt-4">
-                <div className="rounded-md overflow-hidden mb-4">
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full h-80"
-                  />
-                </div>
-
-                <div className="mb-4">
-                  <h4 className="font-medium text-highlight">
+              <div className="p-6 sm:p-8 overflow-y-auto">
+                <DialogHeader className="space-y-2">
+                  <p className="type-label text-muted-foreground">
                     {selectedProject.company}
-                  </h4>
-                  <p className="mt-2">{selectedProject.description}</p>
-                </div>
+                  </p>
+                  <DialogTitle className="type-display-sub text-left">
+                    {selectedProject.title}
+                  </DialogTitle>
+                </DialogHeader>
 
-                <div className="flex flex-wrap gap-2">
-                  {selectedProject.tags.map((tag, index) => (
+                <p className="mt-6 type-body text-muted-foreground measure">
+                  {selectedProject.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mt-8">
+                  {selectedProject.tags.map((tag) => (
                     <span
-                      key={index}
-                      className="px-3 py-1 bg-secondary rounded-full text-xs"
+                      key={tag}
+                      className="type-label text-muted-foreground border border-border rounded-full px-3.5 py-1.5"
                     >
                       {tag}
                     </span>

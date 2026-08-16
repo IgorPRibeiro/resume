@@ -24,6 +24,9 @@ const buttonVariants = cva(
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
+        // Alvos da vitrine: 48px no controle de página, 44px no botão de ícone.
+        pane: "h-12 rounded-md px-7 text-[0.8125rem] uppercase tracking-[0.08em]",
+        "pane-icon": "h-11 w-11",
       },
     },
     defaultVariants: {

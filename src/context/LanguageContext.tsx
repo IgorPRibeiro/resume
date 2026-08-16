@@ -205,6 +205,30 @@ const translations: Translations = {
     en: "All Rights Reserved",
     pt: "Todos os Direitos Reservados",
   },
+
+  // Acessibilidade
+  "a11y.skip": {
+    en: "Skip to content",
+    pt: "Pular para o conteúdo",
+  },
+
+  // 404
+  "notFound.code": {
+    en: "404",
+    pt: "404",
+  },
+  "notFound.title": {
+    en: "This page doesn't exist",
+    pt: "Esta página não existe",
+  },
+  "notFound.description": {
+    en: "The address you followed doesn't lead anywhere on this site.",
+    pt: "O endereço que você seguiu não leva a lugar nenhum neste site.",
+  },
+  "notFound.cta": {
+    en: "Back to the start",
+    pt: "Voltar ao início",
+  },
 };
 
 const LanguageContext = createContext<LanguageContextProps | undefined>(
@@ -222,11 +246,15 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({
     return "en";
   };
 
-  const [language, setLanguage] = useState<Language>("en");
+  // Resolvido no primeiro render: iniciar em "en" e corrigir depois faz o
+  // visitante brasileiro ver a vitrine em inglês por um quadro.
+  const [language, setLanguage] = useState<Language>(getBrowserLanguage);
 
+  // O idioma do documento acompanha o da vitrine: é o que faz o navegador
+  // hifenizar, ler em voz alta e escolher a forma certa da letra.
   useEffect(() => {
-    setLanguage(getBrowserLanguage());
-  }, []);
+    document.documentElement.lang = language === "pt" ? "pt-BR" : "en";
+  }, [language]);
 
   const t = (key: string): string => {
     if (!translations[key]) {

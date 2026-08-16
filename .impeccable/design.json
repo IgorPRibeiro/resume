@@ -1,0 +1,462 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-16T00:00:00Z",
+  "title": "Design System: Igor P. Ribeiro — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "signal-red": {
+        "role": "primary",
+        "displayName": "Signal Red",
+        "canonical": "hsl(0 90% 58%)",
+        "tonalRamp": [
+          "oklch(15% 0.09 27)",
+          "oklch(25% 0.13 27)",
+          "oklch(35% 0.17 27)",
+          "oklch(45% 0.20 27)",
+          "oklch(55% 0.23 27)",
+          "oklch(62% 0.24 27)",
+          "oklch(78% 0.15 27)",
+          "oklch(92% 0.05 27)"
+        ]
+      },
+      "legacy-pink": {
+        "role": "secondary",
+        "displayName": "Legacy Pink (depreciado)",
+        "canonical": "#e91e63",
+        "tonalRamp": [
+          "oklch(15% 0.08 6)",
+          "oklch(25% 0.12 6)",
+          "oklch(35% 0.16 6)",
+          "oklch(45% 0.19 6)",
+          "oklch(55% 0.21 6)",
+          "oklch(60% 0.22 6)",
+          "oklch(76% 0.14 6)",
+          "oklch(92% 0.05 6)"
+        ]
+      },
+      "void": {
+        "role": "neutral",
+        "displayName": "Void (a rua)",
+        "canonical": "hsl(240 10% 3.9%)",
+        "tonalRamp": [
+          "oklch(13% 0.006 286)",
+          "oklch(20% 0.006 286)",
+          "oklch(30% 0.006 286)",
+          "oklch(42% 0.006 286)",
+          "oklch(55% 0.006 286)",
+          "oklch(70% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.006 286)"
+        ]
+      },
+      "graphite": {
+        "role": "neutral",
+        "displayName": "Graphite (o vidro)",
+        "canonical": "hsl(240 3.7% 15.9%)",
+        "tonalRamp": [
+          "oklch(15% 0.006 286)",
+          "oklch(26% 0.006 286)",
+          "oklch(35% 0.006 286)",
+          "oklch(45% 0.006 286)",
+          "oklch(58% 0.006 286)",
+          "oklch(71% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.006 286)"
+        ]
+      },
+      "bone": {
+        "role": "neutral",
+        "displayName": "Bone",
+        "canonical": "hsl(0 0% 98%)",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(25% 0 0)",
+          "oklch(35% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(58% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(88% 0 0)",
+          "oklch(98% 0 0)"
+        ]
+      },
+      "ash": {
+        "role": "neutral",
+        "displayName": "Ash (as etiquetas)",
+        "canonical": "hsl(240 5% 64.9%)",
+        "tonalRamp": [
+          "oklch(15% 0.013 286)",
+          "oklch(25% 0.013 286)",
+          "oklch(35% 0.013 286)",
+          "oklch(48% 0.013 286)",
+          "oklch(60% 0.013 286)",
+          "oklch(71% 0.013 286)",
+          "oklch(85% 0.013 286)",
+          "oklch(95% 0.013 286)"
+        ]
+      },
+      "steel": {
+        "role": "neutral",
+        "displayName": "Steel (anel de foco)",
+        "canonical": "hsl(240 4.9% 83.9%)",
+        "tonalRamp": [
+          "oklch(15% 0.01 286)",
+          "oklch(25% 0.01 286)",
+          "oklch(38% 0.01 286)",
+          "oklch(50% 0.01 286)",
+          "oklch(62% 0.01 286)",
+          "oklch(75% 0.01 286)",
+          "oklch(87% 0.01 286)",
+          "oklch(96% 0.01 286)"
+        ]
+      },
+      "ember-deep": {
+        "role": "tertiary",
+        "displayName": "Ember Deep",
+        "canonical": "hsl(0 62.8% 30.6%)",
+        "tonalRamp": [
+          "oklch(15% 0.09 27)",
+          "oklch(23% 0.12 27)",
+          "oklch(32% 0.15 27)",
+          "oklch(42% 0.17 27)",
+          "oklch(54% 0.19 27)",
+          "oklch(66% 0.18 27)",
+          "oklch(80% 0.12 27)",
+          "oklch(93% 0.04 27)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display (a letra no vidro)",
+        "purpose": "Archivo em font-stretch 110%, clamp(2.75rem, 6vw, 5.5rem), entrelinha 0.95. Só o nome no topo da página, uma vez."
+      },
+      "display-sub": {
+        "displayName": "Display-sub (a segunda linha)",
+        "purpose": "Archivo em font-stretch 105%, clamp(1.5rem, 2.6vw, 2.25rem), peso 500. O degrau grande que não é letreiro: segunda linha do Display, título de diálogo e itens do menu de tela cheia."
+      },
+      "headline": {
+        "displayName": "Headline (título de painel)",
+        "purpose": "Archivo em wdth 105, clamp(2rem, 3.5vw, 3rem). Abre todo painel, sempre com o filete vermelho de 64×4px."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "1,375rem em largura normal. Títulos de projeto e de serviço dentro de um painel; também o nome no cabeçalho e os itens do menu mobile."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "1,0625rem, entrelinha 1,7, tracking 0.006em. Medida pelo token measure (60ch ≈ 70 caracteres reais). O tracking positivo compensa o fechamento visual de texto claro sobre preto."
+      },
+      "label": {
+        "displayName": "Label (a etiqueta)",
+        "purpose": "0,8125rem, peso 500, tracking 0.08em, CAIXA ALTA. Navegação, empresa, rótulos de campo, chips e texto de botão. É o detalhe que dá o tom de sinalização ao sistema."
+      },
+      "fine": {
+        "displayName": "Fine (letra miúda)",
+        "purpose": "0,8125rem, caixa baixa, tracking normal. Um caso só — a linha legal do rodapé — porque uma frase inteira em caixa alta não se lê. É a única exceção da Label-Caps Rule."
+      }
+    },
+    "shadows": [
+      {
+        "name": "pane-edge",
+        "value": "inset 0 1px 0 rgba(255, 255, 255, 0.06)",
+        "purpose": "A aresta de luz na borda superior de todo painel — a quina da placa de vidro pegando o brilho da rua. Único efeito permanente do sistema."
+      },
+      {
+        "name": "surface-lift",
+        "value": "0 16px 40px -12px rgba(0, 0, 0, 0.7)",
+        "purpose": "Acompanha o translateY(-5px) de painéis interativos no hover. Só em resposta a estado, nunca em repouso."
+      },
+      {
+        "name": "accent-bloom",
+        "value": "0 8px 28px -6px hsl(0 90% 58% / 0.30)",
+        "purpose": "Halo do letreiro sob elementos que já são vermelhos em repouso — botão primário e retrato. Nunca em superfície cinza."
+      },
+      {
+        "name": "overlay-drop",
+        "value": "0 24px 64px -12px rgba(0, 0, 0, 0.85)",
+        "purpose": "Diálogo de projeto sobre a cortina preta a 80%. Substitui o shadow-lg do shadcn, fraco demais contra Void."
+      },
+      {
+        "name": "focus-ring",
+        "value": "0 0 0 2px hsl(240 10% 3.9%), 0 0 0 4px hsl(240 4.9% 83.9%)",
+        "purpose": "Única indicação de foco de teclado do sistema. Obrigatória em todo controle interativo."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-standard",
+        "value": "cubic-bezier(0, 0, 0.2, 1)",
+        "purpose": "Easing padrão de todo o sistema; toda animação declarada usa ease-out."
+      },
+      {
+        "name": "duration-color",
+        "value": "150ms",
+        "purpose": "Transição de cor em links de navegação e ícones."
+      },
+      {
+        "name": "duration-control",
+        "value": "200ms",
+        "purpose": "Estados de botão (fundo, opacidade) e abertura de acordeão."
+      },
+      {
+        "name": "duration-lift",
+        "value": "300ms",
+        "purpose": "Elevação de painel no hover: translateY(-5px) + surface-lift."
+      },
+      {
+        "name": "duration-entrance",
+        "value": "500ms",
+        "purpose": "fade-in do menu mobile de tela cheia."
+      },
+      {
+        "name": "focal-lit",
+        "value": "900ms cubic-bezier(0.16, 1, 0.3, 1), stagger 140ms",
+        "purpose": "A vitrine acendendo. brightness(0.28) saturate(0.3) blur(10px) e scale(1.03) → luz plena, nas telas de aplicativo do painel de portfólio. É a única coreografia da página."
+      },
+      {
+        "name": "rule-draw",
+        "value": "600ms cubic-bezier(0.16, 1, 0.3, 1), delay 120ms",
+        "purpose": "O filete vermelho do título traçado da esquerda (scaleX 0 → 1) quando o painel entra em cena."
+      },
+      {
+        "name": "row-light",
+        "value": "400ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "A linha de razão acendendo em Signal Red sob uma linha de lista no hover ou focus-within."
+      },
+      {
+        "name": "scroll-behavior",
+        "value": "smooth",
+        "purpose": "Toda navegação da página é rolagem ancorada suave, declarada em html."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      },
+      {
+        "name": "2xl",
+        "value": "1536px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "O botão de contato. Um por painel, no máximo. Caixa alta com tracking de sinalização.",
+      "html": "<button class=\"ds-btn-primary\">Fale Comigo</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 48px; padding: 14px 28px; border: none; border-radius: 6px; background: hsl(var(--primary, 0 90% 58%)); color: hsl(var(--primary-foreground, 0 0% 98%)); font-family: Archivo, sans-serif; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.4; white-space: nowrap; cursor: pointer; transition: background 200ms cubic-bezier(0, 0, 0.2, 1), box-shadow 200ms cubic-bezier(0, 0, 0.2, 1); } .ds-btn-primary:hover { background: hsl(var(--primary, 0 90% 58%) / 0.9); box-shadow: 0 8px 28px -6px hsl(0 90% 58% / 0.30); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px hsl(240 10% 3.9%), 0 0 0 4px hsl(240 4.9% 83.9%); }"
+    },
+    {
+      "name": "Outline Pill Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Links sociais (LinkedIn, GitHub). Pílula de contorno com ícone de 16px à esquerda.",
+      "html": "<a class=\"ds-btn-pill\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z\"></path><rect x=\"2\" y=\"9\" width=\"4\" height=\"12\"></rect><circle cx=\"4\" cy=\"4\" r=\"2\"></circle></svg>LinkedIn</a>",
+      "css": ".ds-btn-pill { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 48px; padding: 14px 28px; border: 1px solid hsl(var(--border, 240 3.7% 15.9%)); border-radius: 9999px; background: transparent; color: hsl(var(--foreground, 0 0% 98%)); font-family: Archivo, sans-serif; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background 200ms cubic-bezier(0, 0, 0.2, 1); } .ds-btn-pill:hover { background: hsl(var(--secondary, 240 3.7% 15.9%)); } .ds-btn-pill:focus-visible { outline: none; box-shadow: 0 0 0 2px hsl(240 10% 3.9%), 0 0 0 4px hsl(240 4.9% 83.9%); }"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "button-icon",
+      "description": "Seletor de idioma e botão de menu mobile. Quadrado de 44px.",
+      "html": "<button class=\"ds-btn-icon\" aria-label=\"Idioma\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"M2 12h20\"></path><path d=\"M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z\"></path></svg></button>",
+      "css": ".ds-btn-icon { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid hsl(var(--border, 240 3.7% 15.9%)); border-radius: 6px; background: transparent; color: hsl(var(--foreground, 0 0% 98%)); cursor: pointer; transition: background 200ms cubic-bezier(0, 0, 0.2, 1); } .ds-btn-icon:hover { background: hsl(var(--accent, 240 3.7% 15.9%)); } .ds-btn-icon:focus-visible { outline: none; box-shadow: 0 0 0 2px hsl(240 10% 3.9%), 0 0 0 4px hsl(240 4.9% 83.9%); }"
+    },
+    {
+      "name": "Pane Title",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Componente de assinatura: headline em Archivo expandida com filete vermelho de 64×4px, canto vivo, largura do texto.",
+      "html": "<h2 class=\"ds-pane-title\">Projetos de trabalho</h2>",
+      "css": ".ds-pane-title { position: relative; display: inline-block; margin: 0 0 64px; font-family: Archivo, sans-serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 600; font-variation-settings: 'wdth' 105; line-height: 1.05; letter-spacing: -0.015em; color: hsl(var(--foreground, 0 0% 98%)); } .ds-pane-title::after { content: \"\"; position: absolute; bottom: -10px; left: 0; width: 64px; height: 4px; border-radius: 0; background: hsl(var(--primary, 0 90% 58%)); }"
+    },
+    {
+      "name": "Ledger Row",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Linha de registro: etiqueta à esquerda, descrição à direita, linha de razão embaixo que acende em Signal Red no hover. Substitui a fileira de cards de ícone+título+texto.",
+      "html": "<div class=\"ds-row\"><div class=\"ds-row-head\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"5\" y=\"2\" width=\"14\" height=\"20\" rx=\"2\"></rect><path d=\"M12 18h.01\"></path></svg><h3 class=\"ds-row-title\">Desenvolvimento Mobile</h3></div><p class=\"ds-row-text\">Especialista no desenvolvimento de aplicativos móveis multiplataforma com React Native e tecnologias nativas.</p></div>",
+      "css": ".ds-row { position: relative; display: grid; gap: 16px; max-width: 720px; padding: 40px 0; font-family: Archivo, sans-serif; } .ds-row::after { content: \"\"; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: hsl(var(--border, 240 3.7% 15.9%)); } .ds-row::before { content: \"\"; position: absolute; bottom: 0; left: 0; z-index: 1; width: 100%; height: 1px; background: hsl(var(--primary, 0 90% 58%)); transform: scaleX(0); transform-origin: left center; transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-row:hover::before { transform: scaleX(1); } .ds-row-head { display: flex; align-items: flex-start; gap: 16px; color: hsl(var(--muted-foreground, 240 5% 64.9%)); transition: color 300ms cubic-bezier(0, 0, 0.2, 1); } .ds-row:hover .ds-row-head { color: hsl(var(--foreground, 0 0% 98%)); } .ds-row-title { margin: 0; font-size: 1.375rem; font-weight: 600; line-height: 1.35; letter-spacing: -0.005em; color: hsl(var(--foreground, 0 0% 98%)); } .ds-row-text { margin: 0; font-size: 1.0625rem; line-height: 1.7; color: hsl(var(--muted-foreground, 240 5% 64.9%)); }"
+    },
+    {
+      "name": "Project Pane",
+      "kind": "card",
+      "refersTo": "project-pane",
+      "description": "Painel de projeto: a tela do app sangrando no topo (256px, 320px no desktop), título e empresa em etiqueta Ash abaixo. Acende na entrada e abre o diálogo de detalhe.",
+      "html": "<div class=\"ds-project-pane\" role=\"button\" tabindex=\"0\"><div class=\"ds-project-media\"></div><div class=\"ds-project-body\"><h3 class=\"ds-project-title\">Plamont (Android · iOS)</h3><p class=\"ds-project-company\">Globalsys</p></div></div>",
+      "css": ".ds-project-pane { box-sizing: border-box; max-width: 360px; overflow: hidden; border-radius: 8px; background: hsl(var(--secondary, 240 3.7% 15.9%)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06); font-family: Archivo, sans-serif; cursor: pointer; transition: transform 300ms cubic-bezier(0, 0, 0.2, 1), box-shadow 300ms cubic-bezier(0, 0, 0.2, 1); } .ds-project-pane:hover { transform: translateY(-5px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 16px 40px -12px rgba(0, 0, 0, 0.7); } .ds-project-pane:focus-visible { outline: none; box-shadow: 0 0 0 2px hsl(240 10% 3.9%), 0 0 0 4px hsl(240 4.9% 83.9%); } .ds-project-media { height: 320px; overflow: hidden; background: linear-gradient(135deg, hsl(240 6% 22%), hsl(240 8% 12%)); } .ds-project-body { padding: 24px; } .ds-project-title { margin: 0 0 8px; font-size: 1.375rem; font-weight: 600; line-height: 1.35; letter-spacing: -0.005em; color: hsl(var(--foreground, 0 0% 98%)); } .ds-project-company { margin: 0; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: hsl(var(--muted-foreground, 240 5% 64.9%)); }"
+    },
+    {
+      "name": "Skill Tile",
+      "kind": "card",
+      "refersTo": "pane",
+      "description": "Tile de habilidade: o ícone fica em cinza (só as capturas dos apps são saturadas) e ganha cor no hover.",
+      "html": "<div class=\"ds-skill-tile\"><svg class=\"ds-skill-icon\" width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"2.2\"></circle><ellipse cx=\"12\" cy=\"12\" rx=\"10\" ry=\"4.2\"></ellipse><ellipse cx=\"12\" cy=\"12\" rx=\"10\" ry=\"4.2\" transform=\"rotate(60 12 12)\"></ellipse><ellipse cx=\"12\" cy=\"12\" rx=\"10\" ry=\"4.2\" transform=\"rotate(120 12 12)\"></ellipse></svg><h3 class=\"ds-skill-name\">React Native + Expo</h3></div>",
+      "css": ".ds-skill-tile { box-sizing: border-box; display: flex; flex-direction: column; align-items: center; width: 220px; padding: 32px; border-radius: 8px; background: hsl(var(--secondary, 240 3.7% 15.9%)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06); font-family: Archivo, sans-serif; transition: transform 300ms cubic-bezier(0, 0, 0.2, 1), box-shadow 300ms cubic-bezier(0, 0, 0.2, 1); } .ds-skill-tile:hover { transform: translateY(-5px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 16px 40px -12px rgba(0, 0, 0, 0.7); } .ds-skill-icon { margin-bottom: 20px; filter: grayscale(1); opacity: 0.7; color: hsl(var(--foreground, 0 0% 98%)); transition: filter 300ms cubic-bezier(0, 0, 0.2, 1), opacity 300ms cubic-bezier(0, 0, 0.2, 1); } .ds-skill-tile:hover .ds-skill-icon { filter: grayscale(0); opacity: 1; } .ds-skill-name { margin: 0; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; color: hsl(var(--foreground, 0 0% 98%)); }"
+    },
+    {
+      "name": "Tech Chip",
+      "kind": "chip",
+      "refersTo": "tech-chip",
+      "description": "Pílula de contorno com a tecnologia de um projeto. Informativa: não é filtro, não tem estado, não é clicável.",
+      "html": "<span class=\"ds-chip\">React Native</span>",
+      "css": ".ds-chip { display: inline-block; padding: 6px 14px; border: 1px solid hsl(var(--border, 240 3.7% 15.9%)); border-radius: 9999px; background: transparent; color: hsl(var(--muted-foreground, 240 5% 64.9%)); font-family: Archivo, sans-serif; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.4; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Campo com rótulo em etiqueta acima. Nunca placeholder no lugar de rótulo.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-email\">E-mail</label><input class=\"ds-input\" id=\"ds-email\" type=\"email\" placeholder=\"voce@empresa.com\" /></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 8px; font-family: Archivo, sans-serif; } .ds-field-label { font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: hsl(var(--muted-foreground, 240 5% 64.9%)); } .ds-input { box-sizing: border-box; width: 280px; height: 48px; padding: 12px 16px; border: 1px solid hsl(var(--input, 240 3.7% 15.9%)); border-radius: 6px; background: hsl(var(--background, 240 10% 3.9%)); color: hsl(var(--foreground, 0 0% 98%)); font-family: Archivo, sans-serif; font-size: 1.0625rem; } .ds-input::placeholder { color: hsl(var(--muted-foreground, 240 5% 64.9%)); } .ds-input:focus-visible { outline: none; box-shadow: 0 0 0 2px hsl(240 10% 3.9%), 0 0 0 4px hsl(240 4.9% 83.9%); } .ds-input:disabled { opacity: 0.5; cursor: not-allowed; }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Link do cabeçalho fixo em etiqueta: Ash em repouso, Bone no hover. A navegação recua para o vermelho ficar reservado ao letreiro.",
+      "html": "<nav class=\"ds-nav\"><button class=\"ds-nav-link\">Sobre</button><button class=\"ds-nav-link\">Habilidades</button><button class=\"ds-nav-link\">Portfólio</button></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 32px; height: 72px; padding: 0 32px; border-bottom: 1px solid hsl(var(--border, 240 3.7% 15.9%)); background: hsl(240 10% 3.9% / 0.9); backdrop-filter: blur(4px); } .ds-nav-link { padding: 0; border: none; background: none; color: hsl(var(--muted-foreground, 240 5% 64.9%)); font-family: Archivo, sans-serif; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: color 150ms cubic-bezier(0, 0, 0.2, 1); } .ds-nav-link:hover { color: hsl(var(--foreground, 0 0% 98%)); } .ds-nav-link:focus-visible { outline: none; box-shadow: 0 0 0 2px hsl(240 10% 3.9%), 0 0 0 4px hsl(240 4.9% 83.9%); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Vitrine Noturna",
+    "overview": "O site é uma vitrine acesa numa rua escura. Não uma interface sobre fundo escuro — uma vitrine: a rua é preta, a calçada é larga, e o que existe de luz no quarteirão inteiro vem de dentro do vidro. O visitante chega de fora, à noite, andando. Ele não navega um app; ele passa em frente e olha para dentro.\n\nIsso decide a composição antes de qualquer token. A página é uma sequência de painéis de vidro, e um painel de cada vez ocupa o campo de visão. Cada painel é uma montagem terminada — não uma pilha de blocos empilhados até a página acabar. Entre eles há rua: 128px de vazio no desktop, que não é desperdício, é o escuro que faz o próximo painel acender. A calçada (a margem lateral) é larga de propósito: uma vitrine espremida contra o meio-fio não é uma vitrine, é um mostruário de balcão. O que está atrás do vidro são as telas dos aplicativos entregues — Loja Conceito, ICoop, Plamont, LeCard. Elas são os únicos objetos saturados de toda a composição, e é para elas que a luz aponta.\n\nO vermelho é o letreiro. Um único tom de sinal, aceso em poucos lugares: o filete sob o título da vitrine, a aresta viva do retrato, o botão que chama para o contato. Vitrine com dois letreiros brigando não convida ninguém a entrar. A tipografia é Archivo e faz dois papéis com o mesmo desenho: em largura expandida e corpo grande, é a letra pintada no vidro; em largura normal e 17px, é a etiqueta ao lado do objeto. O sistema é composto em 1440px e reduzido para baixo — a intenção nasce no desktop, e o mobile é a mesma vitrine vista de perto, uma coluna, mesma ordem, nada escondido.\n\nRecusas confirmadas: nada de tema claro (:root já é o escuro, não existe escopo .dark); e vitrine aqui é vidro transparente, não glassmorphism — sem desfoque decorativo, sem painel leitoso, sem gradiente de brilho falso. A única transparência com desfoque do sistema é funcional, no cabeçalho fixo.",
+    "keyCharacteristics": [
+      "Composição desktop-first em 1440px, reduzida com fidelidade — nunca redesenhada no mobile.",
+      "Um painel por campo de visão, com 128px de respiro de cada lado no desktop — 256px de rua entre dois vizinhos.",
+      "Calçada larga: margem lateral de até 96px, tratada como parte do design e não como sobra.",
+      "Uma família (Archivo) em duas larguras: expandida no letreiro, normal na etiqueta.",
+      "Um único acento vermelho, aceso em no máximo três pontos por painel.",
+      "As capturas dos apps são o único elemento saturado da página.",
+      "Vidro é clareza: aresta de 1px iluminada, zero desfoque decorativo."
+    ],
+    "rules": [
+      {
+        "name": "The One Signal Rule",
+        "body": "Signal Red acende em no máximo três pontos por painel e nunca ultrapassa 10% de qualquer viewport. Duas peças vermelhas disputando a mesma atenção significam que uma delas está errada — a escassez é o mecanismo.",
+        "section": "colors"
+      },
+      {
+        "name": "The 4.5 Floor Rule",
+        "body": "Signal Red sobre Void mede 5,1:1 e serve para texto. Sobre Graphite cai para 3,9:1 e deixa de servir: dentro de um painel, texto vermelho abaixo de 18px é proibido — use Bone ou Ash no texto e reserve o vermelho para aresta, filete ou linha de razão, onde 3:1 basta. É por essa regra que o rótulo de empresa dentro de um painel de projeto é Ash e não vermelho.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Choreography Rule",
+        "body": "A página tem uma única coreografia, e ela é a vitrine acendendo: quando o painel de portfólio entra em cena, cada tela de aplicativo sai de brightness(0.28) saturate(0.3) blur(10px) em escala 1.03 para a luz plena, em 900ms com cubic-bezier(0.16, 1, 0.3, 1) e 140ms de intervalo entre elas. Nenhuma outra seção ganha entrada coreografada. O apoio permitido é de três tipos e só esses: o filete do título traçado da esquerda, a lista de habilidades escalonada como lista, e o estado de hover de qualquer controle. Reinterpretar toda seção rolada como uma lista escalonada é quebra de sistema.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Migration Rule",
+        "body": "Todo arquivo tocado por qualquer tarefa converte seus text-highlight / bg-highlight / border-highlight para os tokens primary. Não existe refatoração de cor separada: a migração acontece por contato.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Widths Rule",
+        "body": "Archivo aparece em exatamente duas larguras: expandida (105–110) em Display e Headline, normal (100) em todo o resto. Nenhuma terceira largura, nenhuma segunda família — se um bloco parece precisar de outra voz, ele precisa de outro tamanho.",
+        "section": "typography"
+      },
+      {
+        "name": "The Label-Caps Rule",
+        "body": "Todo texto funcional com 0,8125rem ou menos vai em caixa alta com tracking 0.08em. A exceção é uma só e tem nome: fine, a letra miúda legal, que fica em caixa baixa porque uma frase inteira em caps não se lê. Fora dela, texto pequeno em caixa baixa não existe neste sistema.",
+        "section": "typography"
+      },
+      {
+        "name": "The Second Line Rule",
+        "body": "Todo Display carrega uma segunda linha imediatamente abaixo, em Ash e um degrau menor, dentro do mesmo bloco. Nome e especialidade chegam juntos, numa leitura só.",
+        "section": "typography"
+      },
+      {
+        "name": "The Balanced Line Rule",
+        "body": "Todo papel de título (display, display-sub, headline, title) quebra com text-wrap: balance, e o corpo com text-wrap: pretty. É o mecanismo que faz a Bilingual Fit Rule funcionar sem ajuste manual: quando o texto em português cresce sobre o inglês, o navegador redistribui as linhas em vez de largar uma palavra órfã na última.",
+        "section": "typography"
+      },
+      {
+        "name": "The Bilingual Fit Rule",
+        "body": "Nenhum título é dimensionado pelo inglês. O português é 15–30% mais longo; toda linha de Display e Headline precisa sobreviver à versão PT sem órfã de uma palavra e sem estourar para três linhas no mobile. wdth 110 custa largura — teste sempre com o texto PT mais longo.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sidewalk Rule",
+        "body": "A margem lateral nunca é menor que 20px nem maior que 96px, e é a mesma em todos os painéis da página. Conteúdo encostado na borda da janela quebra a vitrine.",
+        "section": "layout"
+      },
+      {
+        "name": "The One Pane Rule",
+        "body": "Um painel por campo de visão. O respiro é por painel — 128px acima e abaixo no desktop — então entre dois painéis vizinhos a rua soma 256px. Se dois assuntos diferentes aparecem juntos na tela sem essa rua entre eles, eles são o mesmo painel, e então precisam de uma única montagem, não de dois títulos.",
+        "section": "layout"
+      },
+      {
+        "name": "The 64 Rule",
+        "body": "Título de painel → primeiro conteúdo: 64px. Sem exceção, em qualquer breakpoint.",
+        "section": "layout"
+      },
+      {
+        "name": "The Faithful Reduction Rule",
+        "body": "O mobile mostra os mesmos elementos, na mesma ordem, com o mesmo texto. Esconder uma seção, reordenar blocos ou inventar um componente exclusivo de mobile é quebra de sistema — o que não couber precisa encolher, não sumir.",
+        "section": "layout"
+      },
+      {
+        "name": "The Rest-Flat Rule",
+        "body": "Superfície em repouso é chapada, com uma única exceção nomeada: a pane-edge. Toda outra sombra é resposta a estado — hover, foco ou sobreposição. Sombra sem interação é decoração e não entra.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Red Bloom Rule",
+        "body": "O accent-bloom só toca elementos que já são vermelhos em repouso. Painel cinza nunca ganha halo vermelho — isso transformaria o letreiro em enfeite.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Clear Glass Rule",
+        "body": "Vidro neste sistema significa clareza: aresta iluminada, superfície opaca, zero desfoque. backdrop-filter existe em exatamente um lugar — o cabeçalho fixo — e por razão funcional. Painel leitoso, brilho diagonal falso e gradiente de vidro são proibidos.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Three-Radius Rule",
+        "body": "8px para painel, 6px para controle, 4px para imagem em texto, 9999px para os três papéis circulares. Qualquer outro valor é erro — inclusive canto vivo, cuja única exceção é o filete de título.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do compor em 1440px primeiro e reduzir; a versão mobile mostra os mesmos elementos, na mesma ordem.",
+      "Do manter 128px de respiro acima e abaixo de cada painel no desktop e 80px no mobile.",
+      "Do usar primary / Signal Red como único acento, convertendo qualquer highlight no arquivo que estiver editando.",
+      "Do carregar Archivo variável com latin-ext; sem ele o português quebra em acentos.",
+      "Do escrever todo texto funcional de 0,8125rem em caixa alta com tracking 0.08em.",
+      "Do limitar texto corrido a 68 caracteres, mesmo quando o painel é largo.",
+      "Do dar pane-edge a todo painel e surface-lift apenas aos que são clicáveis.",
+      "Do dimensionar cada bloco pela versão em português, que é a mais longa.",
+      "Do manter o anel de foco Steel em todo controle interativo, inclusive nos que são <div> estilizados.",
+      "Do deixar as capturas dos apps serem o único ponto saturado da composição.",
+      "Do usar o token measure em todo texto corrido em vez de um max-width arbitrário."
+    ],
+    "donts": [
+      "Don't introduzir um segundo acento cromático nem um segundo letreiro no mesmo painel.",
+      "Don't usar texto vermelho abaixo de 18px sobre Graphite — 3,9:1 reprova em AA.",
+      "Don't usar glassmorphism: painel leitoso, desfoque decorativo, brilho diagonal ou gradiente de vidro. O único backdrop-filter do sistema é o do cabeçalho.",
+      "Don't construir tema claro nem reintroduzir a alternância .dark; :root é o tema.",
+      "Don't adicionar uma segunda família tipográfica, nem uma terceira largura de Archivo.",
+      "Don't esticar parágrafo até a largura do painel só porque há espaço.",
+      "Don't aplicar sombra a superfície em repouso (exceto pane-edge), nem halo vermelho a elemento que não é vermelho.",
+      "Don't usar raio fora de 4 / 6 / 8 / full, e não arredondar o filete de título.",
+      "Don't esconder, reordenar ou substituir conteúdo no mobile.",
+      "Don't animar sem respeitar prefers-reduced-motion: o movimento de 5px, o fade do menu e o animate-bounce do topo precisam ter desligamento."
+    ]
+  }
+}

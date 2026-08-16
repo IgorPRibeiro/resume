@@ -1,4 +1,7 @@
 import { useLanguage } from "@/context/LanguageContext";
+import { cn } from "@/lib/utils";
+import { useInView } from "@/hooks/use-in-view";
+import SectionTitle from "@/components/SectionTitle";
 
 import rnIcon from "@/assets/icons/rnIcon.png";
 import node from "@/assets/icons/node.png";
@@ -9,38 +12,49 @@ import ts from "@/assets/icons/ts.png";
 import java from "@/assets/icons/java.svg";
 import golang from "@/assets/icons/golang.png";
 
-const SkillItem = ({ name, icon }: { name: string; icon: string }) => {
-  return (
-    <div className="flex flex-col items-center bg-secondary p-6 rounded-lg card-hover">
-      <div className="h-10 w-auto mb-4">
-        <img src={icon} className="w-auto h-10" />
-      </div>
-      <h3 className="font-medium">{name}</h3>
-    </div>
-  );
-};
+const skills = [
+  { name: "React Native + Expo", icon: rnIcon },
+  { name: "Android", icon: android },
+  { name: "IOS", icon: iphone },
+  { name: "Next.js", icon: next },
+  { name: "Node.js", icon: node },
+  { name: "TypeScript", icon: ts },
+  { name: "Java", icon: java },
+  { name: "Go Lang", icon: golang },
+];
 
 const SkillsSection = () => {
   const { t } = useLanguage();
-
-  const skills = [
-    { name: "React Native + Expo", icon: rnIcon },
-    { name: "Android", icon: android },
-    { name: "IOS", icon: iphone },
-    { name: "Next.js", icon: next },
-    { name: "Node.js", icon: node },
-    { name: "TypeScript", icon: ts },
-    { name: "Java", icon: java },
-    { name: "Go Lang", icon: golang },
-  ];
+  const { ref, inView } = useInView<HTMLDivElement>(0.1);
 
   return (
-    <section id="skills" className="section py-16 md:py-24">
+    <section id="skills" className="section">
       <div className="container">
-        <h2 className="section-title">{t("skills.title")}</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mt-16">
+        <SectionTitle>{t("skills.title")}</SectionTitle>
+
+        <div
+          ref={ref}
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"
+        >
           {skills.map((skill, index) => (
-            <SkillItem key={index} name={skill.name} icon={skill.icon} />
+            <div
+              key={skill.name}
+              className={cn(
+                "reveal group pane pane-interactive flex flex-col items-center p-8",
+                inView && "is-in"
+              )}
+              style={{ transitionDelay: `${Math.min(index, 7) * 60}ms` }}
+            >
+              {/* Cinza em repouso: só as capturas dos apps são saturadas.
+                  A cor é a recompensa do hover. */}
+              <img
+                src={skill.icon}
+                alt=""
+                loading="lazy"
+                className="h-10 w-auto mb-5 grayscale opacity-70 transition-[filter,opacity] duration-300 ease-out group-hover:grayscale-0 group-hover:opacity-100"
+              />
+              <h3 className="type-label text-center">{skill.name}</h3>
+            </div>
           ))}
         </div>
       </div>

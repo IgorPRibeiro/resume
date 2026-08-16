@@ -2,66 +2,71 @@ import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 
-import i from "@/assets/images/i.png";
+import i from "@/assets/images/i-portrait.webp";
 
 const HeroSection = () => {
   const { t } = useLanguage();
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
+  const scrollTo = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="pt-28 pb-16 md:pt-40 md:pb-24">
+    <section className="pt-[152px] lg:pt-[232px] pb-20 lg:pb-32">
       <div className="container">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-10">
-          <div className="md:w-1/2 space-y-6 text-center md:text-left">
-            <p className="text-highlight text-lg">{t("hero.greeting")}</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 lg:items-center">
+          {/* O letreiro */}
+          <div className="lg:col-span-7 text-center sm:text-left">
+            <h1 className="type-display animate-pane-rise">
               Igor P. Ribeiro
-              <br />
-              <span className="text-2xl md:text-3xl lg:text-4xl text-muted-foreground">
+              <span className="block mt-3 type-display-sub text-muted-foreground">
                 {t("hero.title")}
               </span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-lg">
+
+            <p
+              className="mt-8 type-body text-muted-foreground measure mx-auto sm:mx-0 animate-pane-rise"
+              style={{ animationDelay: "120ms" }}
+            >
               {t("hero.description")}
             </p>
-            <div className="pt-4">
+
+            <div
+              className="mt-10 animate-pane-rise"
+              style={{ animationDelay: "220ms" }}
+            >
               <Button
-                variant="default"
-                onClick={scrollToContact}
-                className="bg-highlight hover:bg-highlight/90"
+                size="pane"
+                onClick={() => scrollTo("contact")}
+                className="transition-[background-color,box-shadow] duration-200 hover:shadow-accent-bloom"
               >
                 {t("hero.cta")}
               </Button>
             </div>
           </div>
 
-          <div className="md:w-1/2 flex justify-center">
-            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-highlight">
+          {/* O objeto atrás do vidro */}
+          <div
+            className="lg:col-span-5 animate-pane-rise"
+            style={{ animationDelay: "80ms" }}
+          >
+            <div className="pane flex items-center justify-center p-10 lg:p-12">
               <img
                 src={i}
-                alt="Profile"
-                className="w-full h-full object-cover"
+                alt="Igor P. Ribeiro"
+                className="w-56 h-56 sm:w-64 sm:h-64 lg:w-[300px] lg:h-[300px] rounded-full object-cover border-4 border-primary"
               />
             </div>
           </div>
         </div>
 
-        <div className="flex justify-center mt-16">
+        <div className="flex justify-center mt-20 lg:mt-28">
           <Button
             variant="outline"
-            size="icon"
-            className="animate-bounce"
-            onClick={() =>
-              document
-                .getElementById("about")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+            size="pane-icon"
+            onClick={() => scrollTo("about")}
+            aria-label={t("nav.about")}
+            className="rounded-full transition-transform duration-300 ease-out hover:translate-y-1"
           >
             <ArrowDown className="h-5 w-5" />
           </Button>

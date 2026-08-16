@@ -1,42 +1,50 @@
 import { useLanguage } from "@/context/LanguageContext";
+import SectionTitle from "@/components/SectionTitle";
 
-import i from "@/assets/images/i.png";
+import i from "@/assets/images/i-portrait.webp";
+
 const AboutSection = () => {
   const { t } = useLanguage();
 
-  return (
-    <section id="about" className="section bg-secondary/20 py-16 md:py-24">
-      <div className="container">
-        <h2 className="section-title">{t("about.title")}</h2>
+  const facts = [
+    { label: "Email", value: "iguprcarrer@gmail.com" },
+    { label: "Location", value: "Espírito Santo, Brazil" },
+    { label: "Study", value: "Multivix" },
+    { label: "Employment", value: "Globalsys Soluções em T.I" },
+  ];
 
-        <div className="flex flex-col md:flex-row items-center gap-10 mt-16">
-          <div className="md:w-1/3">
-            <div className="rounded-md overflow-hidden">
-              <img src={i} alt="About me" className="w-full h-auto" />
+  return (
+    <section id="about" className="section bg-secondary/20">
+      <div className="container">
+        <SectionTitle>{t("about.title")}</SectionTitle>
+
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 lg:items-start">
+          <div className="lg:col-span-5">
+            <div className="pane overflow-hidden">
+              <img
+                src={i}
+                alt="Igor P. Ribeiro"
+                loading="lazy"
+                width={1200}
+                height={802}
+                className="w-full aspect-[3/2] object-cover"
+              />
             </div>
           </div>
 
-          <div className="md:w-2/3">
-            <p className="text-lg leading-relaxed">{t("about.description")}</p>
+          <div className="lg:col-span-7">
+            <p className="type-body measure">{t("about.description")}</p>
 
-            <div className="grid grid-cols-2 gap-4 mt-8">
-              <div>
-                <h4 className="text-highlight font-medium">Email</h4>
-                <p>iguprcarrer@gmail.com</p>
-              </div>
-              <div>
-                <h4 className="text-highlight font-medium">Location</h4>
-                <p>Espírito Santo, Brazil</p>
-              </div>
-              <div>
-                <h4 className="text-highlight font-medium">Study</h4>
-                <p>Multivix</p>
-              </div>
-              <div>
-                <h4 className="text-highlight font-medium">Employment</h4>
-                <p>Globalsys Soluções em T.I</p>
-              </div>
-            </div>
+            <dl className="mt-12 grid sm:grid-cols-2 gap-x-8">
+              {facts.map((fact) => (
+                <div key={fact.label} className="row-rule py-5">
+                  <dt className="type-label text-muted-foreground">
+                    {fact.label}
+                  </dt>
+                  <dd className="mt-2 type-body break-words">{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </div>

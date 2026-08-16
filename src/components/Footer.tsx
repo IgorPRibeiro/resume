@@ -1,50 +1,43 @@
 import { useLanguage } from "@/context/LanguageContext";
-import { Github, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
-  return (
-    <footer className="bg-background py-8 border-t border-border">
-      <div className="container">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            <p className="text-sm text-muted-foreground mt-2">
-              &copy; {currentYear} Igor P. Ribeiro {t("footer.rights")}.
-            </p>
-          </div>
+  const links = [
+    {
+      icon: Github,
+      label: "GitHub",
+      href: "https://github.com/IgorPRibeiro?tab=repositories",
+    },
+    {
+      icon: Linkedin,
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/igorpr1202/",
+    },
+  ];
 
-          <div className="flex space-x-4">
+  return (
+    <footer className="border-t border-border py-10">
+      <div className="container flex flex-col sm:flex-row justify-between items-center gap-6">
+        <p className="type-fine text-muted-foreground text-center sm:text-left">
+          &copy; {currentYear} Igor P. Ribeiro {t("footer.rights")}.
+        </p>
+
+        <div className="flex items-center gap-2">
+          {links.map(({ icon: Icon, label, href }) => (
             <a
-              href="#"
-              className="p-2 rounded-full bg-secondary hover:bg-secondary/80 transition-colors"
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
-              <Github className="h-5 w-5" />
-              <span className="sr-only">GitHub</span>
+              <Icon className="h-5 w-5" />
+              <span className="sr-only">{label}</span>
             </a>
-            <a
-              href="#"
-              className="p-2 rounded-full bg-secondary hover:bg-secondary/80 transition-colors"
-            >
-              <Twitter className="h-5 w-5" />
-              <span className="sr-only">Twitter</span>
-            </a>
-            <a
-              href="#"
-              className="p-2 rounded-full bg-secondary hover:bg-secondary/80 transition-colors"
-            >
-              <Linkedin className="h-5 w-5" />
-              <span className="sr-only">LinkedIn</span>
-            </a>
-            <a
-              href="#"
-              className="p-2 rounded-full bg-secondary hover:bg-secondary/80 transition-colors"
-            >
-              <Instagram className="h-5 w-5" />
-              <span className="sr-only">Instagram</span>
-            </a>
-          </div>
+          ))}
         </div>
       </div>
     </footer>

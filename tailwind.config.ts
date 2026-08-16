@@ -13,9 +13,10 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			// A calçada: nunca menor que 20px, nunca maior que 96px.
+			padding: 'clamp(20px, 5vw, 96px)',
 			screens: {
-				'2xl': '1400px'
+				'2xl': '1440px'
 			}
 		},
 		extend: {
@@ -63,7 +64,15 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				highlight: "#e91e63", // Accent color (similar to the second example)
+				// `highlight` é o token legado do scaffold. Alias para o acento
+				// canônico (Signal Red) até a última referência sair do código.
+				highlight: 'hsl(var(--primary))',
+			},
+			boxShadow: {
+				'pane-edge': 'inset 0 1px 0 rgb(255 255 255 / 0.06)',
+				'surface-lift': '0 16px 40px -12px rgb(0 0 0 / 0.7)',
+				'accent-bloom': '0 8px 28px -6px hsl(0 90% 58% / 0.30)',
+				'overlay-drop': '0 24px 64px -12px rgb(0 0 0 / 0.85)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -95,14 +104,17 @@ export default {
 						opacity: '1'
 					}
 				},
-				'slide-in': {
+				// A vitrine acendendo: o painel emerge do escuro fora de foco.
+				'pane-rise': {
 					from: {
-						transform: 'translateY(10px)',
-						opacity: '0'
+						opacity: '0',
+						transform: 'translateY(14px)',
+						filter: 'blur(8px)'
 					},
 					to: {
+						opacity: '1',
 						transform: 'translateY(0)',
-						opacity: '1'
+						filter: 'blur(0)'
 					}
 				}
 			},
@@ -110,10 +122,10 @@ export default {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out forwards',
-				'slide-in': 'slide-in 0.5s ease-out forwards'
+				'pane-rise': 'pane-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both'
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
+				sans: ["Archivo", "Helvetica Neue", "Arial", "sans-serif"],
 			}
 		}
 	},

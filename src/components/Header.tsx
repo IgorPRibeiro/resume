@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { Menu, X, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,13 +8,32 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import i from "@/assets/images/i.png";
+import i from "@/assets/images/i-portrait.webp";
+
 const Header: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
   const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  // Com o menu de tela cheia aberto, a rua atrás dele não rola — e Esc fecha.
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previous;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [mobileMenuOpen]);
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -32,77 +51,80 @@ const Header: React.FC = () => {
     { label: t("nav.contact"), section: "contact" },
   ];
 
+  const languageMenu = (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="outline"
+          size="pane-icon"
+          aria-label={language === "pt" ? "Mudar idioma" : "Change language"}
+        >
+          <Globe className="h-[18px] w-[18px]" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem
+          onClick={() => setLanguage("en")}
+          className={language === "en" ? "bg-muted" : ""}
+        >
+          English
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => setLanguage("pt")}
+          className={language === "pt" ? "bg-muted" : ""}
+        >
+          Português
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+
   return (
-    <header className="fixed top-0 left-0 w-full bg-background/90 backdrop-blur-sm z-50 border-b border-border py-4">
-      <div className="container flex justify-between items-center">
-        {/* Logo & Name */}
-        <div className="flex items-center space-x-3">
-          <div className="h-10 w-10 rounded-full bg-muted overflow-hidden">
-            <img src={i} alt="Profile" className="h-full w-full object-cover" />
+    <header className="fixed top-0 left-0 w-full h-[72px] bg-background/90 backdrop-blur-sm z-50 border-b border-border">
+      <div className="container h-full flex justify-between items-center">
+        {/* Nome e retrato */}
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 rounded-full bg-muted overflow-hidden shrink-0">
+            <img src={i} alt="" className="h-full w-full object-cover" />
           </div>
-          <h2 className="text-xl font-bold ">Igor P. Ribeiro</h2>
+          <span className="type-title">Igor P. Ribeiro</span>
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navItems.map((item, index) => (
+        {/* Navegação em etiqueta — recua para Ash, acende em Bone */}
+        <nav className="hidden lg:flex items-center gap-8">
+          {navItems.map((item) => (
             <button
-              key={index}
+              key={item.section}
               onClick={() => scrollToSection(item.section)}
-              className="text-foreground hover:text-highlight transition-colors"
+              className="type-label text-muted-foreground hover:text-foreground transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
             >
               {item.label}
             </button>
           ))}
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Globe className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem
-                onClick={() => setLanguage("en")}
-                className={language === "en" ? "bg-muted" : ""}
-              >
-                English
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => setLanguage("pt")}
-                className={language === "pt" ? "bg-muted" : ""}
-              >
-                Português
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {languageMenu}
         </nav>
 
-        {/* Mobile Navigation Button */}
-        <div className="flex md:hidden items-center space-x-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Globe className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem
-                onClick={() => setLanguage("en")}
-                className={language === "en" ? "bg-muted" : ""}
-              >
-                English
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => setLanguage("pt")}
-                className={language === "pt" ? "bg-muted" : ""}
-              >
-                Português
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+        {/* Barra reduzida */}
+        <div className="flex lg:hidden items-center gap-2">
+          {languageMenu}
 
-          <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
+          <Button
+            variant="ghost"
+            size="pane-icon"
+            onClick={toggleMobileMenu}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav"
+            aria-label={
+              mobileMenuOpen
+                ? language === "pt"
+                  ? "Fechar menu"
+                  : "Close menu"
+                : language === "pt"
+                ? "Abrir menu"
+                : "Open menu"
+            }
+          >
             {mobileMenuOpen ? (
               <X className="h-6 w-6" />
             ) : (
@@ -110,24 +132,27 @@ const Header: React.FC = () => {
             )}
           </Button>
         </div>
-
-        {/* Mobile Navigation Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden fixed inset-0 top-16 bg-background z-40 animate-fade-in">
-            <nav className="flex flex-col items-center justify-center h-full space-y-8">
-              {navItems.map((item, index) => (
-                <button
-                  key={index}
-                  onClick={() => scrollToSection(item.section)}
-                  className="text-xl font-medium text-foreground hover:text-highlight transition-colors"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </nav>
-          </div>
-        )}
       </div>
+
+      {/* Menu de tela cheia: mesmos itens, mesma ordem */}
+      {mobileMenuOpen && (
+        <div
+          id="mobile-nav"
+          className="lg:hidden fixed inset-0 top-[72px] bg-background z-40 animate-fade-in"
+        >
+          <nav className="container flex flex-col items-center justify-center h-full gap-8">
+            {navItems.map((item) => (
+              <button
+                key={item.section}
+                onClick={() => scrollToSection(item.section)}
+                className="type-display-sub text-foreground hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+        </div>
+      )}
     </header>
   );
 };
