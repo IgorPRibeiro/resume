@@ -3,11 +3,14 @@ import type { Config } from "tailwindcss";
 
 export default {
 	darkMode: ["class"],
+	// `js,jsx` não é sobra: a página de ferramentas é escrita em JS puro, e
+	// sem essas extensões na varredura o Tailwind não vê as classes dela e
+	// entrega a tela sem estilo nenhum.
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./pages/**/*.{ts,tsx,js,jsx}",
+		"./components/**/*.{ts,tsx,js,jsx}",
+		"./app/**/*.{ts,tsx,js,jsx}",
+		"./src/**/*.{ts,tsx,js,jsx}",
 	],
 	prefix: "",
 	theme: {

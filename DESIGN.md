@@ -188,7 +188,7 @@ Rua preta, vidro grafite, letra de osso — e um único vermelho de letreiro que
 **Display Font:** Archivo, eixo de largura em 110 (fallback `sans-serif`)
 **Body Font:** Archivo, largura normal (fallback `sans-serif`)
 **Label Font:** nenhuma família distinta — Archivo em caixa alta e espacejamento aberto faz o papel de etiqueta.
-**Mono Font:** JetBrains Mono (400/500), e só para **dado que não é prosa**: o numeral de índice de uma lista ordenada, o período de um cargo, o nome de um repositório. Três papéis, nenhum a mais — o instante em que ela aparece em uma frase, a regra foi quebrada.
+**Mono Font:** JetBrains Mono (400/500), e só para **dado que não é prosa**: o numeral de índice de uma lista ordenada, o período de um cargo, o nome de um repositório, e o valor gerado na página de ferramentas. Quatro papéis, nenhum a mais — o instante em que ela aparece em uma frase, a regra foi quebrada.
 
 **Character:** Archivo é uma grotesca desenhada para sinalização e display de alta performance, e é escolhida exatamente por isso: em `wdth 110` e corpo grande ela tem o peso e a presença da letra pintada no vidro de uma vitrine; em largura normal e 17px ela vira a etiqueta discreta ao lado do objeto. Uma família, duas vozes, nenhuma segunda fonte. Carregar como fonte variável (eixos `wght` 400–700 e `wdth` 100–115, subconjuntos latin e latin-ext — o `latin-ext` não é opcional, o português depende dele). O Google Fonts expõe o eixo de largura como `font-stretch`, então a largura se declara em porcentagem (`font-stretch: 110%`) e não por `font-variation-settings`.
 
@@ -203,6 +203,7 @@ Rua preta, vidro grafite, letra de osso — e um único vermelho de letreiro que
 - **Body-sm** (400, 0,9375rem, entrelinha 1,65): o parágrafo que vive **dentro** de um painel, onde os 17px do Body estourariam a altura da peça. Fora de painel ele não existe.
 - **Micro** (400, 0,75rem, entrelinha 1,4): o degrau mais miúdo do sistema, e o último. Dois usos: a ficha de tecnologia e o seletor de idioma. Abaixo disto nada é texto.
 - **Mono** (400, 0,8125rem, JetBrains Mono, tracking normal): índice, período e nome de repositório. Ver **Mono Font** acima.
+- **Data** (500, 1,125rem, JetBrains Mono, tracking 0.01em): o valor gerado por uma ferramenta — o CPF, o CNPJ, a senha. É a mesma segunda voz do Mono num corpo maior, e a diferença de tamanho é a diferença de papel: no currículo o dado é nota ao lado do texto, na ferramenta ele **é** o objeto da tela, e escrever a peça mais importante do painel no menor corpo do sistema seria enterrá-la. Quebra em qualquer ponto (`overflow-wrap: anywhere`), porque uma senha de 64 caracteres não tem espaço onde quebrar.
 - **Fine** (400, 0,8125rem, caixa baixa, tracking normal): letra miúda. Existe para um caso só — a linha legal do rodapé — e existe porque uma frase inteira em caixa alta com tracking aberto não se lê.
 
 ### Named Rules

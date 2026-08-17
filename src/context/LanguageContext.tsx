@@ -448,6 +448,139 @@ const translations: Translations = {
     pt: "Enviar Mensagem",
   },
 
+  // Tools Page
+  "tools.title": {
+    en: "Tools",
+    pt: "Ferramentas",
+  },
+  "tools.description": {
+    en: "Test-data generators for developers: documents with valid check digits to exercise form validation, and random passwords for staging accounts.",
+    pt: "Geradores de dado de teste para quem desenvolve: documentos com dígitos verificadores válidos para exercitar a validação de formulário, e senha sorteada para conta de homologação.",
+  },
+  "tools.privacy": {
+    en: "Everything is generated in your browser. No value leaves this page and nothing is stored.",
+    pt: "Tudo é gerado no seu navegador. Nenhum valor sai desta página e nada é armazenado.",
+  },
+  "tools.back": {
+    en: "Back to the start",
+    pt: "Voltar ao início",
+  },
+  "tools.generate": {
+    en: "Generate",
+    pt: "Gerar",
+  },
+  "tools.copy": {
+    en: "Copy",
+    pt: "Copiar",
+  },
+  "tools.copied": {
+    en: "Copied",
+    pt: "Copiado",
+  },
+  "tools.format": {
+    en: "Format",
+    pt: "Formato",
+  },
+  "tools.format.masked": {
+    en: "Punctuated",
+    pt: "Com pontuação",
+  },
+  "tools.format.plain": {
+    en: "No punctuation",
+    pt: "Sem pontuação",
+  },
+
+  "tools.cpf.title": {
+    en: "CPF generator",
+    pt: "Gerador de CPF",
+  },
+  "tools.cpf.description": {
+    en: "A CPF with valid check digits. Sequences of a single repeated digit are never produced — they satisfy the formula but any real registry rejects them.",
+    pt: "Um CPF com dígitos verificadores válidos. Sequências de um dígito repetido nunca saem — elas fecham a fórmula, mas qualquer cadastro real recusa.",
+  },
+
+  "tools.cnpj.title": {
+    en: "CNPJ generator",
+    pt: "Gerador de CNPJ",
+  },
+  "tools.cnpj.description": {
+    en: "The alphanumeric format from IN RFB 2.229/2024, in force from July 2026 — and the legacy numeric one, which keeps working alongside it.",
+    pt: "O formato alfanumérico da IN RFB 2.229/2024, em vigor a partir de julho de 2026 — e o numérico antigo, que segue valendo ao lado dele.",
+  },
+  "tools.cnpj.standard": {
+    en: "Standard",
+    pt: "Padrão",
+  },
+  "tools.cnpj.alphanumeric": {
+    en: "Alphanumeric (new)",
+    pt: "Alfanumérico (novo)",
+  },
+  "tools.cnpj.numeric": {
+    en: "Numeric (legacy)",
+    pt: "Numérico (antigo)",
+  },
+
+  "tools.password.title": {
+    en: "Password generator",
+    pt: "Gerador de senha",
+  },
+  "tools.password.description": {
+    en: "Drawn from the browser's cryptographic source, with at least one character from every set you keep on.",
+    pt: "Sorteada pela fonte criptográfica do navegador, com pelo menos um caractere de cada conjunto que você deixar ligado.",
+  },
+  "tools.password.length": {
+    en: "Length",
+    pt: "Comprimento",
+  },
+  "tools.password.sets": {
+    en: "Character sets",
+    pt: "Conjuntos",
+  },
+  "tools.password.readability": {
+    en: "Readability",
+    pt: "Leitura",
+  },
+  "tools.password.ambiguous": {
+    en: "Avoid ambiguous characters",
+    pt: "Evitar caracteres ambíguos",
+  },
+  "tools.password.bits": {
+    en: "bits of entropy",
+    pt: "bits de entropia",
+  },
+  "tools.password.set.lowercase": {
+    en: "Lowercase",
+    pt: "Minúsculas",
+  },
+  "tools.password.set.uppercase": {
+    en: "Uppercase",
+    pt: "Maiúsculas",
+  },
+  "tools.password.set.digits": {
+    en: "Digits",
+    pt: "Números",
+  },
+  "tools.password.set.symbols": {
+    en: "Symbols",
+    pt: "Símbolos",
+  },
+  "tools.password.strength.weak": {
+    en: "Weak",
+    pt: "Fraca",
+  },
+  "tools.password.strength.fair": {
+    en: "Fair",
+    pt: "Razoável",
+  },
+  "tools.password.strength.strong": {
+    en: "Strong",
+    pt: "Forte",
+  },
+  "tools.password.strength.excellent": {
+    en: "Excellent",
+    pt: "Excelente",
+  },
+
   // Footer
   "footer.rights": {
     en: "All Rights Reserved",

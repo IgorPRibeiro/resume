@@ -1,12 +1,44 @@
 import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+/**
+ * Um item de navegação é âncora quando o destino está na mesma página e
+ * rota quando não está. Misturar os dois num `<a>` só faria a rota recarregar
+ * o app inteiro para chegar onde o roteador já sabe ir.
+ */
+const NavAnchor = ({
+  href,
+  className,
+  onClick,
+  children,
+}: {
+  href: string;
+  className?: string;
+  onClick?: () => void;
+  children: React.ReactNode;
+}) =>
+  href.startsWith("/") ? (
+    <Link to={href} className={className} onClick={onClick}>
+      {children}
+    </Link>
+  ) : (
+    <a href={href} className={className} onClick={onClick}>
+      {children}
+    </a>
+  );
+
 const Header: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isHome = useLocation().pathname === "/";
+
+  // Fora da página inicial, `#about` não leva a lugar nenhum: o recorte só
+  // existe depois que a raiz é montada, então o destino vira `/#about`.
+  const section = (hash: string) => (isHome ? hash : `/${hash}`);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
@@ -32,11 +64,11 @@ const Header: React.FC = () => {
   // do navegador esperam um link quando o destino é uma seção da própria
   // página. O recorte sob o cabeçalho fixo é do `scroll-padding-top`.
   const navItems = [
-    { label: t("nav.about"), href: "#about" },
-    { label: t("nav.experience"), href: "#experience" },
-    { label: t("nav.skills"), href: "#skills" },
+    { label: t("nav.about"), href: section("#about") },
+    { label: t("nav.experience"), href: section("#experience") },
+    { label: t("nav.skills"), href: section("#skills") },
     { label: t("nav.tools"), href: "/ferramentas", accent: true },
-    { label: t("nav.portfolio"), href: "#portfolio" },
+    { label: t("nav.portfolio"), href: section("#portfolio") },
   ];
 
   // O seletor de idioma é um par segmentado, não um menu: são duas opções e
@@ -71,17 +103,17 @@ const Header: React.FC = () => {
   return (
     <header className="fixed left-0 top-0 z-50 h-[72px] w-full border-b border-white/[0.07] bg-background/[0.72] backdrop-blur-[14px]">
       <div className="container flex h-full items-center justify-between gap-6">
-        <a
-          href="#top"
+        <NavAnchor
+          href={section("#top")}
           className="type-title whitespace-nowrap rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           Igor P. Ribeiro
-        </a>
+        </NavAnchor>
 
         {/* Navegação em etiqueta — recua para Ash, acende em Bone */}
         <nav className="hidden min-w-0 items-center gap-[clamp(10px,1.5vw,26px)] lg:flex">
           {navItems.map((item) => (
-            <a
+            <NavAnchor
               key={item.href}
               href={item.href}
               className={cn(
@@ -93,17 +125,17 @@ const Header: React.FC = () => {
               )}
             >
               {item.label}
-            </a>
+            </NavAnchor>
           ))}
 
           {languageToggle}
 
-          <a
-            href="#contact"
+          <NavAnchor
+            href={section("#contact")}
             className="type-label flex-none whitespace-nowrap rounded-full border border-white/[0.16] px-4 py-2.5 text-foreground transition-[border-color,background-color,box-shadow] duration-200 hover:border-primary/60 hover:bg-primary/10 hover:shadow-accent-bloom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             {t("hero.cta")}
-          </a>
+          </NavAnchor>
         </nav>
 
         {/* Barra reduzida */}
@@ -143,7 +175,7 @@ const Header: React.FC = () => {
         >
           <nav className="container flex h-full flex-col items-center justify-center gap-8">
             {navItems.map((item) => (
-              <a
+              <NavAnchor
                 key={item.href}
                 href={item.href}
                 onClick={closeMobileMenu}
@@ -156,16 +188,16 @@ const Header: React.FC = () => {
                 )}
               >
                 {item.label}
-              </a>
+              </NavAnchor>
             ))}
 
-            <a
-              href="#contact"
+            <NavAnchor
+              href={section("#contact")}
               onClick={closeMobileMenu}
               className="type-label rounded-full border border-white/[0.16] px-6 py-3.5 text-foreground transition-[border-color,background-color] duration-200 hover:border-primary/60 hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               {t("hero.cta")}
-            </a>
+            </NavAnchor>
           </nav>
         </div>
       )}

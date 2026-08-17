@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -148,8 +149,8 @@ const HeroSection = () => {
 
             {/* O único painel vermelho em repouso da página — e por isso o
                 único que pode ganhar o halo do mesmo vermelho. */}
-            <a
-              href="/ferramentas"
+            <Link
+              to="/ferramentas"
               className="pane-interactive flex items-center justify-between gap-5 rounded-pane border border-primary/[0.28] bg-primary/[0.08] px-7 py-6 hover:border-primary/50 hover:bg-primary/[0.14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <span>
@@ -164,7 +165,7 @@ const HeroSection = () => {
                 aria-hidden="true"
                 className="h-5 w-5 shrink-0 text-primary"
               />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
