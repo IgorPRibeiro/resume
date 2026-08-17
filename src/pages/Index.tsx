@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
 import AmbientBackground from "@/components/AmbientBackground";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -14,6 +16,20 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   const { t } = useLanguage();
+  const { hash } = useLocation();
+
+  // Voltando das ferramentas por `/#about`, quem entrega o endereço é o
+  // roteador, e não o navegador: o recorte precisa acontecer depois que a
+  // página existe. O respiro sob o cabeçalho fixo é do `scroll-padding-top`.
+  useEffect(() => {
+    if (!hash) return undefined;
+
+    const target = document.querySelector(hash);
+    if (!target) return undefined;
+
+    const frame = requestAnimationFrame(() => target.scrollIntoView());
+    return () => cancelAnimationFrame(frame);
+  }, [hash]);
 
   return (
     <div className="relative min-h-screen bg-background text-foreground">

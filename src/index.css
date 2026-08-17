@@ -199,6 +199,20 @@
     letter-spacing: normal;
   }
 
+  /* O quarto papel da segunda voz: o valor gerado de uma ferramenta. É o
+     mesmo dado do `type-mono`, mas é o objeto da tela em vez de uma nota de
+     rodapé — um CPF em 13px seria a peça mais importante do painel escrita
+     no menor corpo do sistema. Quebra em qualquer ponto porque uma senha de
+     64 caracteres não tem espaço onde quebrar. */
+  .type-data {
+    font-family: theme("fontFamily.mono");
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    overflow-wrap: anywhere;
+  }
+
   /* Letra miúda: a única exceção da Label-Caps Rule. Uma frase em caixa
      alta com tracking aberto não se lê. */
   .type-fine {
