@@ -1,47 +1,53 @@
+import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
-import { Monitor, Server, Smartphone } from "lucide-react";
+import { useInView } from "@/hooks/use-in-view";
 import SectionTitle from "@/components/SectionTitle";
 
 const ServicesSection = () => {
   const { t } = useLanguage();
+  const { ref, inView } = useInView<HTMLDivElement>(0.1);
 
   const services = [
     {
       title: t("services.mobile.title"),
       description: t("services.mobile.description"),
-      icon: Smartphone,
     },
     {
       title: t("services.frontend.title"),
       description: t("services.frontend.description"),
-      icon: Monitor,
     },
     {
       title: t("services.backend.title"),
       description: t("services.backend.description"),
-      icon: Server,
     },
   ];
 
   return (
-    <section id="services" className="section bg-secondary/20">
+    <section id="services" className="section">
       <div className="container">
         <SectionTitle>{t("services.title")}</SectionTitle>
 
         {/* Um registro, não uma fileira de cards: cada linha é uma
-            competência e a linha de razão acende sob ela. */}
-        <div className="border-t border-border">
-          {services.map(({ title, description, icon: Icon }) => (
+            competência e a linha de razão acende sob ela. O numeral entrou
+            no lugar do ícone — três serviços numerados se leem como oferta,
+            três ícones genéricos se leem como enfeite. */}
+        <div
+          ref={ref}
+          className={cn("reveal border-t border-white/[0.08]", inView && "is-in")}
+        >
+          {services.map((service, index) => (
             <div
-              key={title}
-              className="row-rule group grid gap-4 lg:grid-cols-12 lg:gap-8 py-10 lg:py-12"
+              key={service.title}
+              className="row-slide grid gap-8 py-11 lg:grid-cols-12"
             >
-              <div className="lg:col-span-4 flex items-start gap-4">
-                <Icon className="h-5 w-5 mt-1 shrink-0 text-muted-foreground transition-colors duration-300 ease-out group-hover:text-foreground" />
-                <h3 className="type-title">{title}</h3>
+              <div className="flex items-baseline gap-[18px] lg:col-span-4">
+                <span aria-hidden="true" className="type-mono text-primary">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="type-title">{service.title}</h3>
               </div>
-              <p className="lg:col-span-8 type-body text-muted-foreground measure">
-                {description}
+              <p className="type-body max-w-[62ch] text-muted-foreground lg:col-span-8">
+                {service.description}
               </p>
             </div>
           ))}

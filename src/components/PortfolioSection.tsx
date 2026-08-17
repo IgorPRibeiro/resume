@@ -49,7 +49,7 @@ const PortfolioSection = () => {
       image: icoop,
       descriptionImage: icoop,
       description: t("portfolio.project2.description"),
-      tags: ["React Native", "Node.js", "Firebase", "Contentfull", "Redux"],
+      tags: ["React Native", "Firebase", "Contentfull", "Redux"],
     },
     {
       id: 3,
@@ -101,9 +101,22 @@ const PortfolioSection = () => {
 
               <div className="p-6">
                 <h3 className="type-title">{project.title}</h3>
-                <p className="mt-2 type-label text-muted-foreground">
+                {/* Ash e não vermelho: dentro de painel o Signal Red não
+                    alcança 4.5:1 em corpo pequeno. */}
+                <p className="mt-2.5 type-label text-muted-dim">
                   {project.company}
                 </p>
+
+                {/* As tags saíram do diálogo para a face do card: elas são o
+                    que faz alguém decidir abrir o projeto, não o que se lê
+                    depois de aberto. */}
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <li key={tag}>
+                      <span className="chip chip-caps">{tag}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </button>
           ))}
@@ -143,10 +156,7 @@ const PortfolioSection = () => {
 
                 <div className="flex flex-wrap gap-2 mt-8">
                   {selectedProject.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="type-label text-muted-foreground border border-border rounded-full px-3.5 py-1.5"
-                    >
+                    <span key={tag} className="chip chip-caps">
                       {tag}
                     </span>
                   ))}

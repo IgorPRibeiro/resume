@@ -170,7 +170,9 @@ Rua preta, vidro grafite, letra de osso — e um único vermelho de letreiro que
 - **Graphite** (`hsl(240 3.7% 15.9%)` — #27272a): o vidro. Um valor faz seis trabalhos — `secondary`, `muted`, `accent`, `border`, `input` e a superfície de todo painel. É a única elevação tonal do sistema.
 - **Bone** (`hsl(0 0% 98%)` — #fafafa): todo texto de primeira ordem. Nunca branco puro.
 - **Ash** (`hsl(240 5% 64.9%)` — #a1a1aa): as etiquetas. Subtítulo do letreiro, descrições, rótulos de campo, navegação em repouso. 7,7:1 sobre Void; seguro em qualquer tamanho.
-- **Steel** (`hsl(240 4.9% 83.9%)` — #d4d4d8): exclusivamente o anel de foco (`--ring`). É como o teclado se anuncia.
+- **Ash Deep** (`hsl(240 4% 46%)` — #71717a, token `--muted-dim`): o degrau abaixo de Ash, e o mais baixo que o sistema desce. Existe para um papel só — a etiqueta em caixa alta que nomeia um dado que já se lê sozinho: "Anos de experiência" sob o número, "Plataformas" sob a lista, o período de um cargo, a linha legal do rodapé. 4,8:1 sobre Void, acima do piso, mas nunca em corpo de leitura.
+- **Steel** (`hsl(240 4.9% 83.9%)` — #d4d4d8): o anel de foco (`--ring`), e — pelo token irmão `--muted-strong` — o texto de apoio **dentro** de um painel, um degrau abaixo de Bone e um acima de Ash. Passo de leitura curto: item de processo, nome de empresa, ficha de stack. Em texto corrido de painel largo, o papel continua sendo Body em Bone ou Ash.
+- **Aurora Blue** (`rgb(90 110 255)` a 10%): não é cor de interface — é luz de fundo. Existe em exatamente um lugar, a mancha fria da rua animada, e serve só para o vermelho do letreiro ter contraponto e o preto não virar monocromia. Nunca toca texto, aresta ou controle, e nunca aparece acima de 10% de opacidade.
 - **Ember Deep** (`hsl(0 62.8% 30.6%)` — #7f1d1d): estados destrutivos. Sem uso implementado; reservado.
 
 ### Named Rules
@@ -185,7 +187,8 @@ Rua preta, vidro grafite, letra de osso — e um único vermelho de letreiro que
 
 **Display Font:** Archivo, eixo de largura em 110 (fallback `sans-serif`)
 **Body Font:** Archivo, largura normal (fallback `sans-serif`)
-**Label/Mono Font:** nenhuma família distinta — Archivo em caixa alta e espacejamento aberto faz o papel de etiqueta.
+**Label Font:** nenhuma família distinta — Archivo em caixa alta e espacejamento aberto faz o papel de etiqueta.
+**Mono Font:** JetBrains Mono (400/500), e só para **dado que não é prosa**: o numeral de índice de uma lista ordenada, o período de um cargo, o nome de um repositório. Três papéis, nenhum a mais — o instante em que ela aparece em uma frase, a regra foi quebrada.
 
 **Character:** Archivo é uma grotesca desenhada para sinalização e display de alta performance, e é escolhida exatamente por isso: em `wdth 110` e corpo grande ela tem o peso e a presença da letra pintada no vidro de uma vitrine; em largura normal e 17px ela vira a etiqueta discreta ao lado do objeto. Uma família, duas vozes, nenhuma segunda fonte. Carregar como fonte variável (eixos `wght` 400–700 e `wdth` 100–115, subconjuntos latin e latin-ext — o `latin-ext` não é opcional, o português depende dele). O Google Fonts expõe o eixo de largura como `font-stretch`, então a largura se declara em porcentagem (`font-stretch: 110%`) e não por `font-variation-settings`.
 
@@ -196,13 +199,19 @@ Rua preta, vidro grafite, letra de osso — e um único vermelho de letreiro que
 - **Title** (600, 1,375rem): título de projeto e de serviço dentro de um painel.
 - **Body** (400, 1,0625rem, entrelinha 1,7, tracking 0.006em): texto corrido. 17px e não 16px porque a leitura acontece em desktop, à distância de vitrine. O tracking positivo mínimo não é enfeite: texto claro sobre preto fecha visualmente, e esse toque devolve o ar que o negativo come. Medida limitada pelo token `measure` (60ch ≈ 70 caracteres reais — a unidade `ch` mede o zero, mais largo que a média das letras, então 68ch já estourava a faixa confortável).
 - **Label** (500, 0,8125rem, tracking 0.08em, **caixa alta**): etiquetas — navegação, nome de empresa, rótulos de campo, chips de tecnologia, texto de botão. A caixa alta com espacejamento aberto é o que dá à vitrine seu tom de sinalização, e é o detalhe que mais diferencia este sistema de um portfólio padrão.
+- **Stat** (700, 2rem, entrelinha 1,1, tracking −0.02em): o número de vitrine. Só nos três dados do letreiro, sempre com a etiqueta em Ash Deep logo abaixo — o número se lê de longe, a etiqueta explica de perto.
+- **Body-sm** (400, 0,9375rem, entrelinha 1,65): o parágrafo que vive **dentro** de um painel, onde os 17px do Body estourariam a altura da peça. Fora de painel ele não existe.
+- **Micro** (400, 0,75rem, entrelinha 1,4): o degrau mais miúdo do sistema, e o último. Dois usos: a ficha de tecnologia e o seletor de idioma. Abaixo disto nada é texto.
+- **Mono** (400, 0,8125rem, JetBrains Mono, tracking normal): índice, período e nome de repositório. Ver **Mono Font** acima.
 - **Fine** (400, 0,8125rem, caixa baixa, tracking normal): letra miúda. Existe para um caso só — a linha legal do rodapé — e existe porque uma frase inteira em caixa alta com tracking aberto não se lê.
 
 ### Named Rules
 
-**The Two Widths Rule.** Archivo aparece em exatamente duas larguras: expandida (105–110) em Display e Headline, normal (100) em todo o resto. Nenhuma terceira largura, nenhuma segunda família — se um bloco parece precisar de outra voz, ele precisa de outro tamanho.
+**The Two Widths Rule.** Archivo aparece em exatamente duas larguras: expandida (105–110) em Display e Headline, normal (100) em todo o resto. Nenhuma terceira largura — se um bloco parece precisar de outra voz, ele precisa de outro tamanho.
 
-**The Label-Caps Rule.** Todo texto funcional com 0,8125rem ou menos vai em caixa alta com tracking 0.08em. A exceção é uma só e tem nome: `fine`, a letra miúda legal, que fica em caixa baixa porque uma frase inteira em caps não se lê. Fora dela, texto pequeno em caixa baixa não existe neste sistema — ou é corpo de leitura em 17px, ou é etiqueta em caixa alta.
+**The Second Voice Rule.** Existe exatamente uma segunda família, JetBrains Mono, e ela não é uma voz alternativa: é a voz do **dado**. Índice, período, nome de repositório — coisas que se leem como se lê um terminal, não como se lê uma frase. Prosa em mono é quebra de sistema, e mono em título também: se um bloco de texto parece pedir a segunda família, ele está pedindo outro tamanho na primeira.
+
+**The Label-Caps Rule.** Todo texto funcional com 0,8125rem ou menos vai em caixa alta com tracking 0.08em. As exceções são três e todas têm nome: `fine`, a letra miúda legal, em caixa baixa porque uma frase inteira em caps não se lê; `mono`, porque um período ou um nome de repositório em caixa alta deixa de parecer dado; e a ficha de stack em `micro`, que nomeia uma tecnologia do jeito que ela se escreve ("React Native", não "REACT NATIVE") — a ficha de catálogo, que classifica em vez de nomear, continua em caixa alta. Fora dessas três, texto pequeno em caixa baixa não existe neste sistema.
 
 **The Balanced Line Rule.** Todo papel de título (`display`, `display-sub`, `headline`, `title`) quebra com `text-wrap: balance`, e o corpo com `text-wrap: pretty`. É o mecanismo que faz a Bilingual Fit Rule funcionar sem ajuste manual: quando o texto em português cresce sobre o inglês, o navegador redistribui as linhas em vez de largar uma palavra órfã na última.
 
@@ -236,7 +245,9 @@ A navegação colapsa em 1024px e não em 640px por medição, não por gosto: o
 
 ## Elevation & Depth
 
-Vidro e luz, não sombra empilhada. Em repouso, todo painel é Graphite chapado sobre Void, separado por uma **aresta de luz**: um fio de 1px branco a 6% na borda superior, como a quina de uma placa de vidro pegando o brilho da rua. É a única profundidade permanente do sistema, e ela é material, não projetada.
+Vidro e luz, não sombra empilhada. Em repouso, todo painel é um **véu** sobre a rua — branco a 3,5%, com aresta de 1px em branco a 8% e a **aresta de luz** de 1px branco a 6% na borda superior, como a quina de uma placa de vidro pegando o brilho da rua. Véu e não cinza próprio: é o que deixa a aurora do fundo continuar visível por baixo do painel sem nenhum desfoque, e é o que mantém a página inteira sobre um mesmo preto em vez de faixas alternadas de tom.
+
+Atrás de tudo existe **a rua animada**: duas manchas de luz que respiram em 26s e 34s, uma grade de 72px que desliza exatamente um módulo em 24s, um halo que persegue o ponteiro com atraso, e um véu vertical que escurece para baixo. Nada ali carrega informação, nada ali é interativo, e o halo não existe sob movimento reduzido. É cenário: se a página fosse impressa em preto chapado, nenhuma informação se perderia.
 
 O resto é comportamento. Quando o ponteiro chega num painel interativo, ele sobe 5px em 300ms com easing de saída e ganha uma sombra ambiente que o descola do preto — a vitrine se inclinando para a calçada. Elemento não interativo não sobe e não sombreia, nunca. A única elevação permanente além da aresta é o cabeçalho fixo, resolvido por material (translúcido + desfoque + fio), não por sombra.
 
@@ -244,6 +255,7 @@ O resto é comportamento. Quando o ponteiro chega num painel interativo, ele sob
 - **pane-edge** (`box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06)`): a aresta de luz na borda superior de todo painel. Permanente, e o único efeito que existe em repouso.
 - **surface-lift** (`box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.7)`): acompanha o `translateY(-5px)` de painéis interativos no hover. Preto puro e difuso — sobre um fundo quase preto, só a ausência de luz lê como distância.
 - **accent-bloom** (`box-shadow: 0 8px 28px -6px hsl(0 90% 58% / 0.30)`): o halo do letreiro, sob elementos que já são vermelhos em repouso — botão primário e retrato. Só no hover, só neles.
+- **pane-deep** (`box-shadow: inset 0 1px 0 rgba(255,255,255,0.09), 0 26px 60px -24px rgba(0,0,0,0.9)`): o poço do painel interativo no hover, com a aresta de luz subindo de 6% para 9% no mesmo gesto. É o `surface-lift` levado ao painel de véu, que precisa de um preto mais fundo para se descolar de um fundo que já é quase preto.
 - **overlay-drop** (`box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.85)`): o diálogo de projeto sobre a cortina preta a 80%. Substitui o `shadow-lg` do shadcn, fraco demais contra Void.
 - **focus-ring** (`box-shadow: 0 0 0 2px hsl(240 10% 3.9%), 0 0 0 4px hsl(240 4.9% 83.9%)`): única indicação de foco de teclado. Não pode ser removida de nenhum controle.
 
@@ -253,21 +265,23 @@ O resto é comportamento. Quando o ponteiro chega num painel interativo, ele sob
 
 **The Red Bloom Rule.** O `accent-bloom` só toca elementos que já são vermelhos em repouso. Painel cinza nunca ganha halo vermelho — isso transformaria o letreiro em enfeite.
 
-**The One Choreography Rule.** A página tem uma única coreografia, e ela é **a vitrine acendendo**: quando o painel de portfólio entra em cena, cada tela de aplicativo sai de `brightness(0.28) saturate(0.3) blur(10px)` em escala 1.03 para a luz plena, em 900ms com `cubic-bezier(0.16, 1, 0.3, 1)` e 140ms de intervalo entre elas. É o único lugar da página onde a luz literalmente acende, porque é o único lugar onde a luz existe. Nenhuma outra seção ganha entrada coreografada. O apoio permitido é de três tipos e só esses: o filete do título traçado da esquerda (600ms), a lista de habilidades escalonada como lista (60ms por item, teto de 7), e o estado de hover de qualquer controle. Reinterpretar toda seção rolada como uma lista escalonada é quebra de sistema.
+**The One Choreography Rule.** A página tem uma única coreografia **focal**, e ela é **a vitrine acendendo**: quando o painel de portfólio entra em cena, cada tela de aplicativo sai de `brightness(0.28) saturate(0.3) blur(10px)` em escala 1.03 para a luz plena, em 900ms com `cubic-bezier(0.16, 1, 0.3, 1)` e 140ms de intervalo entre elas. É o único lugar da página onde a luz literalmente acende, porque é o único lugar onde a luz existe. Nenhuma outra seção pode acender: quem repetir o `reveal-lit` fora do portfólio apaga o único momento da página.
 
-**The Clear Glass Rule.** Vidro neste sistema significa clareza: aresta iluminada, superfície opaca, zero desfoque. `backdrop-filter` existe em exatamente um lugar — o cabeçalho fixo — e por razão funcional. Painel leitoso, brilho diagonal falso e gradiente de vidro são proibidos.
+O apoio é de quatro tipos e só esses: o filete do título traçado da esquerda (600ms); o `reveal` — 22px de subida com desfoque de 7px em 900ms — que **cada painel usa no máximo uma vez**, sobre um bloco, nunca sobre cada parágrafo dentro dele; o escalonamento de lista (60–80ms por item, teto de 6 itens) reservado a grades de peças iguais; e o estado de hover de qualquer controle. A distinção que sustenta a regra: coreografia é uma **sequência** que se assiste, apoio é um **estado inicial** que se resolve. Um bloco que entra é apoio; oito blocos entrando em cascata dentro do mesmo painel viraram sequência, e isso é quebra de sistema.
+
+**The Clear Glass Rule.** Vidro neste sistema significa clareza: aresta iluminada, superfície chapada, zero desfoque. O véu do painel é translúcido, mas translucidez não é desfoque — o que passa por baixo dele passa nítido. `backdrop-filter` existe em exatamente um lugar, o cabeçalho fixo, e por razão funcional: ele atravessa conteúdo em movimento. Painel leitoso, brilho diagonal falso e gradiente de vidro continuam proibidos — inclusive o gradiente vertical de superfície, que é a forma mais fácil de a translucidez virar enfeite.
 
 ## Shapes
 
-Retângulos calmos. Painéis, imagens e diálogos usam 8px; controles (botões, campos, botões de ícone) usam 6px; imagens dentro de texto usam 4px. Círculo completo é reservado a três papéis: o retrato (com aresta Signal Red de 4px), os poços de ícone, e os chips de tecnologia.
+Retângulos calmos. Painéis e diálogos usam 14px; a peça de grade — o azulejo de habilidade, menor e repetido — usa 12px; controles (botões, campos, botões de ícone) usam 6px; imagens dentro de texto usam 4px. Círculo completo é reservado a três papéis: os poços de ícone, os chips de tecnologia e o par segmentado de idioma.
 
 A exceção deliberada é o filete de 64×4px sob cada título de painel: raio zero. É o único canto vivo do sistema, e por isso ele lê como marcação e não como interface.
 
-Bordas são sempre 1px em Graphite e existem para separar planos da mesma cor. Nenhuma borda colorida além da aresta do retrato.
+Bordas são sempre 1px e existem para separar planos da mesma cor: branco a 8% no painel de véu e nas réguas que dividem um registro, Graphite nos controles. A única borda colorida em repouso é a do painel de ferramentas, o único painel vermelho da página; no hover, qualquer painel interativo puxa a aresta para Signal Red a 35%.
 
 ### Named Rules
 
-**The Three-Radius Rule.** 8px para painel, 6px para controle, 4px para imagem em texto, `9999px` para os três papéis circulares. Qualquer outro valor é erro — inclusive canto vivo, cuja única exceção é o filete de título.
+**The Four-Radius Rule.** 14px para painel e diálogo, 12px para a peça de grade, 6px para controle, 4px para imagem em texto, `9999px` para os papéis circulares. Qualquer outro valor é erro — inclusive canto vivo, cuja única exceção é o filete de título. Os dois raios de superfície não são decoração: o painel é maior e mais macio porque carrega leitura, o azulejo é mais fechado porque aparece oito vezes seguidas e um raio grande repetido vira renda.
 
 ## Components
 

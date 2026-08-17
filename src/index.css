@@ -18,6 +18,9 @@
     --secondary-foreground: 0 0% 98%;
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
+    /* Ash em dois degraus: apoio dentro de painel e etiqueta em caps. */
+    --muted-strong: 240 6% 84%;
+    --muted-dim: 240 4% 46%;
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
@@ -50,8 +53,9 @@
   html {
     scroll-behavior: smooth;
     /* O cabeçalho fixo tem 72px: sem isso, toda âncora entrega a borda
-       superior do painel por baixo dele. */
-    scroll-padding-top: 72px;
+       superior do painel por baixo dele. Os 96px dão o respiro de sobra
+       para que o título ancorado não nasça colado no fio do cabeçalho. */
+    scroll-padding-top: 96px;
     caret-color: hsl(var(--primary));
     accent-color: hsl(var(--primary));
     scrollbar-color: hsl(var(--secondary)) hsl(var(--background));
@@ -161,6 +165,40 @@
     text-transform: uppercase;
   }
 
+  /* Corpo curto: o parágrafo que vive dentro de um painel, onde 17px de
+     leitura corrida não cabem sem estourar a altura da peça. */
+  .type-body-sm {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+
+  /* O degrau mais miúdo do sistema, e o último: ficha e seletor de idioma.
+     Abaixo disto nada é texto — é ruído. */
+  .type-micro {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  /* O número de vitrine: o dado que se lê de longe, antes da etiqueta que
+     diz o que ele é. */
+  .type-stat {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  /* A segunda voz: numeral de índice, período de cargo, nome de repositório.
+     Monoespaçada porque é dado, não prosa — e nunca passa de uma linha. */
+  .type-mono {
+    font-family: theme("fontFamily.mono");
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: normal;
+  }
+
   /* Letra miúda: a única exceção da Label-Caps Rule. Uma frase em caixa
      alta com tracking aberto não se lê. */
   .type-fine {
@@ -176,20 +214,44 @@
     max-width: 60ch;
   }
 
-  /* Painéis: superfície de vidro com a aresta de luz permanente. */
+  /* Painéis: superfície de vidro com a aresta de luz permanente. A superfície
+     é um véu sobre a rua, não um cinza próprio — é o que mantém a aurora do
+     fundo legível por baixo do painel sem nenhum desfoque. */
   .pane {
-    @apply rounded-lg bg-secondary;
+    @apply rounded-pane border;
+    background-color: rgb(255 255 255 / 0.035);
+    border-color: rgb(255 255 255 / 0.08);
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
   }
 
   .pane-interactive {
-    @apply transition-[transform,box-shadow] duration-300 ease-out;
+    @apply transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out;
   }
 
   .pane-interactive:hover {
+    @apply shadow-pane-deep;
     transform: translateY(-5px);
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06),
-      0 16px 40px -12px rgb(0 0 0 / 0.7);
+    border-color: hsl(var(--primary) / 0.35);
+  }
+
+  /* Ficha: o rótulo de tecnologia. Só aresta e texto — nunca fundo cheio,
+     porque uma fileira de fichas preenchidas compete com o letreiro. */
+  .chip {
+    @apply inline-flex items-center rounded-full border border-white/[0.12] px-3.5 py-1.5;
+    @apply type-micro tracking-[0.05em] text-muted-strong;
+    @apply transition-colors duration-200 ease-out;
+  }
+
+  /* Ficha de catálogo: a mesma peça, em caixa alta, quando o que ela nomeia
+     é classificação e não vocabulário — a tag de um projeto, não a stack. */
+  .chip-caps {
+    @apply uppercase tracking-[0.07em] text-muted-foreground;
+  }
+
+  a:hover .chip,
+  .chip-interactive:hover {
+    border-color: hsl(var(--primary) / 0.55);
+    @apply text-foreground;
   }
 
   /* Respiro de painel: 80px acima e abaixo no mobile, 128px no desktop.
@@ -275,6 +337,32 @@
   .row-rule:focus-within::before {
     transform: scaleX(1);
   }
+
+  /* Linha de registro: a mesma linha de razão, mas que cede à direita quando
+     o ponteiro chega. O deslocamento é o afordance de "isto é uma entrada",
+     e vale para cargo, serviço e canal de contato. */
+  .row-slide {
+    @apply row-rule px-2;
+    transition: background-color 300ms ease-out;
+  }
+
+  /* O conteúdo cede à direita, a caixa não sai do lugar: quem desliza são os
+     filhos, por `transform`. Animar o `padding-left` da própria linha daria o
+     mesmo desenho recalculando o layout a cada quadro — e a régua inferior e
+     o fundo precisam ficar ancorados de qualquer forma. */
+  .row-slide > * {
+    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .row-slide:hover > *,
+  .row-slide:focus-within > * {
+    transform: translateX(1rem);
+  }
+
+  .row-slide:hover,
+  .row-slide:focus-within {
+    background-color: rgb(255 255 255 / 0.03);
+  }
 }
 
 /* Movimento reduzido: sem deslocamento, sem desfoque — o estado final
@@ -290,5 +378,12 @@
   .rule-draw::after,
   .row-rule::before {
     transform: scaleX(1) !important;
+  }
+
+  /* Sem movimento reduzido a linha ainda responde — só que por cor de fundo
+     e régua, sem o deslocamento. */
+  .row-slide:hover > *,
+  .row-slide:focus-within > * {
+    transform: none !important;
   }
 }

@@ -27,9 +27,17 @@ const translations: Translations = {
     en: "About",
     pt: "Sobre",
   },
+  "nav.experience": {
+    en: "Experience",
+    pt: "Experiência",
+  },
   "nav.skills": {
     en: "Skills",
     pt: "Habilidades",
+  },
+  "nav.tools": {
+    en: "Tools",
+    pt: "Ferramentas",
   },
   "nav.services": {
     en: "What I Do",
@@ -54,12 +62,76 @@ const translations: Translations = {
     pt: "Desenvolvedor Full-stack",
   },
   "hero.description": {
-    en: "I build exceptional digital experiences with cutting-edge technologies, focusing on performance and user experience.",
-    pt: "Eu construo experiências digitais excepcionais com tecnologias de ponta, focando em desempenho e experiência do usuário.",
+    en: "I build exceptional digital experiences with cutting-edge technologies, focusing on performance and user experience. I work remotely, from scoping to store release.",
+    pt: "Eu construo experiências digitais excepcionais com tecnologias de ponta, focando em desempenho e experiência do usuário. Trabalho remoto, do escopo à publicação nas lojas.",
+  },
+  "hero.available": {
+    en: "Available for freelance projects",
+    pt: "Disponível para projetos freelance",
   },
   "hero.cta": {
     en: "Contact Me",
     pt: "Fale Comigo",
+  },
+  "hero.cta.secondary": {
+    en: "View projects",
+    pt: "Ver projetos",
+  },
+
+  // Hero — os três números de rodapé do letreiro
+  "hero.stat.years.value": {
+    en: "4+",
+    pt: "4+",
+  },
+  "hero.stat.years.label": {
+    en: "Years of experience",
+    pt: "Anos de experiência",
+  },
+  "hero.stat.platforms.value": {
+    en: "iOS · Android · Web",
+    pt: "iOS · Android · Web",
+  },
+  "hero.stat.platforms.label": {
+    en: "Platforms",
+    pt: "Plataformas",
+  },
+  "hero.stat.remote.value": {
+    en: "Remote",
+    pt: "Remoto",
+  },
+  "hero.stat.remote.label": {
+    en: "Brazil and abroad",
+    pt: "Brasil e exterior",
+  },
+
+  // Hero — painéis laterais
+  "hero.process.title": {
+    en: "How I work",
+    pt: "Como eu trabalho",
+  },
+  "hero.process.step1": {
+    en: "Scoping and estimate before any code is written.",
+    pt: "Levantamento de escopo e estimativa antes de começar.",
+  },
+  "hero.process.step2": {
+    en: "Delivery in cycles, with a test build at every stage.",
+    pt: "Entregas em ciclos, com build para teste a cada etapa.",
+  },
+  "hero.process.step3": {
+    en: "Store release and post-launch support.",
+    pt: "Publicação nas lojas e acompanhamento pós-lançamento.",
+  },
+  "hero.stack.title": {
+    en: "Core stack",
+    pt: "Stack principal",
+  },
+  "hero.tools.title": {
+    en: "Free tools",
+    pt: "Ferramentas grátis",
+  },
+  "hero.tools.description": {
+    en: "CPF, CNPJ and password generators for testing.",
+    pt: "Geradores de CPF, CNPJ e senha para testes.",
   },
 
   // About Section
@@ -67,15 +139,153 @@ const translations: Translations = {
     en: "About Me",
     pt: "Sobre Mim",
   },
-  "about.description": {
-    en: "With over 4 years of experience in software development, I specialize in building modern web and mobile applications. I'm passionate about clean code, performance optimization, and creating intuitive user interfaces. My expertise spans the entire development stack, from designing responsive frontends to implementing robust backend systems.",
-    pt: "Com mais de 4 anos de experiência em desenvolvimento de software, sou especialista na construção de aplicativos web e mobile modernos. Sou apaixonado por código limpo, otimização de desempenho e criação de interfaces intuitivas. Minha expertise abrange todo o stack de desenvolvimento, desde o design de frontends responsivos até a implementação de sistemas de backend robustos.",
+  "about.p1": {
+    en: "Full-stack developer with over 4 years of experience, focused on mobile applications that have to work outside the ideal scenario: offline first architectures, automatic data sync, robust caches and audio streaming through native bridges. I also handle what comes after the code — App Store and Google Play releases, OTA updates and bundle security.",
+    pt: "Desenvolvedor full-stack com mais de 4 anos de experiência, com foco em aplicativos móveis que precisam funcionar bem fora do cenário ideal: arquiteturas offline first, sincronização automática de dados, caches robustos e streaming de áudio via bridges nativas. Também cuido do que vem depois do código — publicação na App Store e no Google Play, atualizações OTA e segurança do bundle.",
+  },
+  "about.p2": {
+    en: "Today I'm a Front End Developer at Globalsys Soluções em TI and an undergraduate student at Multivix. I take on freelance projects 100% remotely, from scoping to release.",
+    pt: "Hoje sou Front End Developer na Globalsys Soluções em TI e curso Bacharelado na Multivix. Atendo projetos freelance de forma 100% remota, do escopo à publicação.",
+  },
+  "about.fact.email": {
+    en: "Email",
+    pt: "Email",
+  },
+  "about.fact.base": {
+    en: "Based in",
+    pt: "Base",
+  },
+  "about.fact.base.value": {
+    en: "Espírito Santo, Brazil · 100% remote",
+    pt: "Espírito Santo, Brasil · 100% remoto",
+  },
+  "about.fact.education": {
+    en: "Education",
+    pt: "Formação",
+  },
+  "about.fact.education.value": {
+    en: "Bachelor's at Multivix · Technical degree at SENAI",
+    pt: "Bacharelado na Multivix · Técnico no SENAI",
+  },
+  "about.fact.languages": {
+    en: "Languages",
+    pt: "Idiomas",
+  },
+  "about.fact.languages.value": {
+    en: "Native Portuguese · American Sign Language (intermediate)",
+    pt: "Português nativo · Libras americana (intermediário)",
+  },
+
+  // Experience Section
+  "experience.title": {
+    en: "Experience",
+    pt: "Experiência",
+  },
+  "experience.globalsys.role": {
+    en: "Front End Developer",
+    pt: "Front End Developer",
+  },
+  "experience.globalsys.period": {
+    en: "Nov 2021 — present",
+    pt: "Nov 2021 — atual",
+  },
+  "experience.globalsys.item1": {
+    en: "Native bridges for audio streaming in radio-style applications.",
+    pt: "Bridges nativas para streaming de áudio em aplicativos no formato de rádio.",
+  },
+  "experience.globalsys.item2": {
+    en: "Robust cache architectures to optimize performance.",
+    pt: "Arquiteturas de cache robustas para otimizar desempenho.",
+  },
+  "experience.globalsys.item3": {
+    en: "Scalable offline first architectures, handling and storing large volumes of data with automatic sync on reconnect.",
+    pt: "Arquiteturas offline first escaláveis, com manipulação e armazenamento de grandes volumes de dados e sincronização automática ao reconectar.",
+  },
+  "experience.globalsys.item4": {
+    en: "JavaScript bundle obfuscation in React Native, plus method and class obfuscation with ProGuard on Android.",
+    pt: "Ofuscação do bundle JavaScript em React Native e de métodos e classes com ProGuard no Android.",
+  },
+  "experience.globalsys.item5": {
+    en: "App releases on the App Store and Google Play.",
+    pt: "Publicação de aplicativos na App Store e no Google Play.",
+  },
+  "experience.globalsys.item6": {
+    en: "In-house OTA update solution replacing a discontinued tool, making it possible to ship new bundles quickly.",
+    pt: "Solução própria de atualização OTA para substituir uma ferramenta descontinuada, permitindo publicar novos bundles rapidamente.",
+  },
+  "experience.easyfarm.role": {
+    en: "Flutter Developer",
+    pt: "Flutter Developer",
+  },
+  "experience.easyfarm.period": {
+    en: "Jun 2021 — Nov 2021",
+    pt: "Jun 2021 — Nov 2021",
+  },
+  "experience.easyfarm.item1": {
+    en: "Background geolocation and route mapping between points.",
+    pt: "Geolocalização em background e mapeamento de rotas entre pontos.",
+  },
+  "experience.easyfarm.item2": {
+    en: "Fixed drifts ranging from meters to kilometers in background point logging, raising accuracy to practically 100%.",
+    pt: "Correção de desvios de metros a quilômetros no registro de pontos em background, elevando a precisão para praticamente 100%.",
+  },
+  "experience.easyfarm.item3": {
+    en: "Offline data handling and synchronization.",
+    pt: "Tratamento e sincronização de dados offline.",
+  },
+  "experience.multivix.period": {
+    en: "Jun 2021 — present",
+    pt: "Jun 2021 — atual",
+  },
+  "experience.multivix.title": {
+    en: "Bachelor's degree — Multivix",
+    pt: "Bacharelado — Multivix",
+  },
+  "experience.multivix.description": {
+    en: "Mathematical logic, business process modeling, data structures and computer networks, with mobile projects built as an internship requirement.",
+    pt: "Lógica matemática, modelagem de processos de negócio, estruturas de dados e redes de computadores, com projetos mobile desenvolvidos como requisito de estágio.",
+  },
+  "experience.senai.period": {
+    en: "Jan 2019 — Jan 2021",
+    pt: "Jan 2019 — Jan 2021",
+  },
+  "experience.senai.title": {
+    en: "Technical degree — SENAI, Vitória",
+    pt: "Ensino técnico — SENAI, Vitória",
+  },
+  "experience.senai.description": {
+    en: "Programming logic and applied mathematics with Python, operating systems and computing fundamentals, plus a project applying SOLID principles with C# and ASP.NET.",
+    pt: "Lógica de programação e matemática aplicada com Python, sistemas operacionais e fundamentos de computação, além de um projeto aplicando princípios SOLID com C# e ASP.NET.",
   },
 
   // Skills Section
   "skills.title": {
     en: "My Skills",
     pt: "Minhas Habilidades",
+  },
+  "skills.languages.title": {
+    en: "Languages",
+    pt: "Linguagens",
+  },
+  "skills.languages.value": {
+    en: "JavaScript · TypeScript · Java · Swift · Python · Go",
+    pt: "JavaScript · TypeScript · Java · Swift · Python · Go",
+  },
+  "skills.tech.title": {
+    en: "Technologies and tools",
+    pt: "Tecnologias e ferramentas",
+  },
+  "skills.tech.value": {
+    en: "React Native · Expo · Flutter · Android · Swift StoryBoard · React · Next.js · Node.js · Realm · Docker · .NET Core",
+    pt: "React Native · Expo · Flutter · Android · Swift StoryBoard · React · Next.js · Node.js · Realm · Docker · .NET Core",
+  },
+  "skills.specialties.title": {
+    en: "Specialties",
+    pt: "Especialidades",
+  },
+  "skills.specialties.value": {
+    en: "Offline first · Data sync · Native bridges · OTA updates · Store releases · Bundle obfuscation and security",
+    pt: "Offline first · Sincronização de dados · Bridges nativas · Atualizações OTA · Publicação nas lojas · Ofuscação e segurança de bundle",
   },
 
   // What I Do Section
@@ -162,6 +372,40 @@ const translations: Translations = {
     pt: "O aplicativo Estudante - Le Card foi desenvolvido utilizando React Native para proporcionar uma experiência nativa e multiplataforma aos usuários. A aplicação permite que estudantes que utilizam o cartão Le Card Estudante consultem o saldo e as últimas transações realizadas com seu cartão, de forma prática e acessível.",
   },
 
+  // Open Source Section
+  "opensource.title": {
+    en: "Open source projects",
+    pt: "Projetos abertos",
+  },
+  "opensource.all": {
+    en: "See everything on GitHub",
+    pt: "Ver tudo no GitHub",
+  },
+  "opensource.ota.description": {
+    en: "Local OTA updates for React Native: swap the bundle without going through a new store review.",
+    pt: "Atualização OTA local para React Native: troca do bundle sem passar por nova revisão nas lojas.",
+  },
+  "opensource.jwt.description": {
+    en: "macOS app that generates the Sign in with Apple Client Secret, signing an ES256 JWT for server authentication.",
+    pt: "App macOS que gera o Client Secret do Sign in with Apple, assinando um JWT em ES256 para autenticação de servidores.",
+  },
+  "opensource.overlay.description": {
+    en: "60 FPS animated overlay combining Skia and Reanimated in React Native.",
+    pt: "Overlay animado a 60 FPS combinando Skia e Reanimated em React Native.",
+  },
+  "opensource.iphost.description": {
+    en: "Command line application for discovering public IPs and hosts.",
+    pt: "Aplicação de linha de comando para descobrir IPs públicos e hosts.",
+  },
+  "opensource.coins.description": {
+    en: "Back office for the Coins project, for managing products and orders.",
+    pt: "Back office do projeto Coins, para gerenciar produtos e pedidos.",
+  },
+  "opensource.pusher.description": {
+    en: "Contribution to the official Pusher SDK for React Native, covering real-time WebSockets.",
+    pt: "Contribuição no SDK oficial do Pusher para React Native, sobre WebSockets em tempo real.",
+  },
+
   // Contact Section
   "contact.title": {
     en: "Get In Touch",
@@ -179,9 +423,13 @@ const translations: Translations = {
     en: "Phone",
     pt: "Telefone",
   },
-  "contact.address": {
-    en: "Address",
-    pt: "Endereço",
+  "contact.workModel": {
+    en: "Work model",
+    pt: "Modelo de trabalho",
+  },
+  "contact.workModel.value": {
+    en: "100% remote, across Brazil and abroad",
+    pt: "100% remoto, para todo o Brasil e exterior",
   },
   "contact.form.name": {
     en: "Name",

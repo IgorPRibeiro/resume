@@ -1,51 +1,47 @@
+import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
+import { useInView } from "@/hooks/use-in-view";
 import SectionTitle from "@/components/SectionTitle";
-
-import i from "@/assets/images/i-portrait.webp";
 
 const AboutSection = () => {
   const { t } = useLanguage();
+  const { ref, inView } = useInView<HTMLDivElement>(0.1);
 
   const facts = [
-    { label: "Email", value: "iguprcarrer@gmail.com" },
-    { label: "Location", value: "Espírito Santo, Brazil" },
-    { label: "Study", value: "Multivix" },
-    { label: "Employment", value: "Globalsys Soluções em T.I" },
+    { label: t("about.fact.email"), value: "iguprcarrer@gmail.com" },
+    { label: t("about.fact.base"), value: t("about.fact.base.value") },
+    {
+      label: t("about.fact.education"),
+      value: t("about.fact.education.value"),
+    },
+    {
+      label: t("about.fact.languages"),
+      value: t("about.fact.languages.value"),
+    },
   ];
 
   return (
-    <section id="about" className="section bg-secondary/20">
+    <section id="about" className="section">
       <div className="container">
         <SectionTitle>{t("about.title")}</SectionTitle>
 
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 lg:items-start">
-          <div className="lg:col-span-5">
-            <div className="pane overflow-hidden">
-              <img
-                src={i}
-                alt="Igor P. Ribeiro"
-                loading="lazy"
-                width={1200}
-                height={802}
-                className="w-full aspect-[3/2] object-cover"
-              />
-            </div>
-          </div>
+        <div
+          ref={ref}
+          className={cn("reveal max-w-[980px]", inView && "is-in")}
+        >
+          <p className="type-body max-w-[68ch]">{t("about.p1")}</p>
+          <p className="type-body mt-5 max-w-[68ch] text-muted-foreground">
+            {t("about.p2")}
+          </p>
 
-          <div className="lg:col-span-7">
-            <p className="type-body measure">{t("about.description")}</p>
-
-            <dl className="mt-12 grid sm:grid-cols-2 gap-x-8">
-              {facts.map((fact) => (
-                <div key={fact.label} className="row-rule py-5">
-                  <dt className="type-label text-muted-foreground">
-                    {fact.label}
-                  </dt>
-                  <dd className="mt-2 type-body break-words">{fact.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+          <dl className="mt-12 grid gap-x-8 sm:grid-cols-2">
+            {facts.map((fact) => (
+              <div key={fact.label} className="row-rule py-5">
+                <dt className="type-label text-muted-dim">{fact.label}</dt>
+                <dd className="type-body mt-2 break-words">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

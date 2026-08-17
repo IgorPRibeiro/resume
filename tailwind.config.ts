@@ -40,7 +40,11 @@ export default {
 				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
+					foreground: 'hsl(var(--muted-foreground))',
+					// Dois degraus de Ash entre o corpo e a etiqueta: `strong` é o
+					// texto de apoio dentro de painel, `dim` é a etiqueta em caps.
+					strong: 'hsl(var(--muted-strong))',
+					dim: 'hsl(var(--muted-dim))'
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
@@ -73,11 +77,16 @@ export default {
 				'surface-lift': '0 16px 40px -12px rgb(0 0 0 / 0.7)',
 				'accent-bloom': '0 8px 28px -6px hsl(0 90% 58% / 0.30)',
 				'overlay-drop': '0 24px 64px -12px rgb(0 0 0 / 0.85)',
+				// O painel descolando do preto no hover: aresta mantida, poço aberto.
+				'pane-deep': 'inset 0 1px 0 rgb(255 255 255 / 0.09), 0 26px 60px -24px rgb(0 0 0 / 0.9)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: 'calc(var(--radius) - 4px)',
+				// Raios do painel e da peça de grade, acima do raio de controle.
+				pane: '14px',
+				tile: '12px'
 			},
 			keyframes: {
 				'accordion-down': {
@@ -104,6 +113,20 @@ export default {
 						opacity: '1'
 					}
 				},
+				// A rua ao fundo: duas manchas de luz que nunca param, e a grade
+				// deslizando exatamente um módulo para que o laço não tenha emenda.
+				'aurora-a': {
+					'0%, 100%': { transform: 'translate3d(-6%, -4%, 0) scale(1)' },
+					'50%': { transform: 'translate3d(8%, 6%, 0) scale(1.15)' }
+				},
+				'aurora-b': {
+					'0%, 100%': { transform: 'translate3d(6%, 8%, 0) scale(1.1)' },
+					'50%': { transform: 'translate3d(-8%, -6%, 0) scale(1)' }
+				},
+				'grid-drift': {
+					from: { backgroundPosition: '0 0, 0 0' },
+					to: { backgroundPosition: '72px 72px, 72px 72px' }
+				},
 				// A vitrine acendendo: o painel emerge do escuro fora de foco.
 				'pane-rise': {
 					from: {
@@ -122,10 +145,14 @@ export default {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out forwards',
-				'pane-rise': 'pane-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both'
+				'pane-rise': 'pane-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both',
+				'aurora-a': 'aurora-a 26s ease-in-out infinite',
+				'aurora-b': 'aurora-b 34s ease-in-out infinite',
+				'grid-drift': 'grid-drift 24s linear infinite'
 			},
 			fontFamily: {
 				sans: ["Archivo", "Helvetica Neue", "Arial", "sans-serif"],
+				mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 			}
 		}
 	},
