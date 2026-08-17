@@ -315,6 +315,95 @@
     filter: none;
   }
 
+  /* ── O portal: a sala final ──────────────────────────────────────────
+     O último painel não entra na rua — ele fecha a rua. Uma cortina fixa
+     do tamanho da tela acende por baixo do conteúdo enquanto a seção de
+     contato sobe, e a página inteira passa a ser esse único ambiente até
+     o rodapé. Tudo aqui é comandado por `--open` (0 → 1), que o scroll
+     escreve na seção; nada aqui roda sozinho. */
+  .portal {
+    --open: 0;
+  }
+
+  /* A cortina: preto da casa, com o letreiro brilhando de baixo e o
+     contraponto frio no alto — a mesma luz da rua, agora fechada numa
+     sala. Fica em z-index negativo dentro do <main>, então passa por
+     cima da rua animada e por baixo de todo texto. */
+  .portal-curtain {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: var(--open);
+    background:
+      radial-gradient(
+        130% 78% at 50% 112%,
+        hsl(var(--primary) / 0.2),
+        transparent 62%
+      ),
+      radial-gradient(
+        92% 58% at 50% -12%,
+        rgb(90 110 255 / 0.09),
+        transparent 66%
+      ),
+      hsl(var(--background));
+  }
+
+  /* A assinatura: o nome em tamanho de fachada, rente ao chão da sala e
+     cortado pela borda de baixo, no limite de leitura. Não é informação —
+     quem precisa do nome já o leu no letreiro; é o que dá escala à sala.
+     Entra tarde no progresso, quando a seção anterior já saiu: uma fachada
+     dessas atrás de uma grade de cartões seria só sujeira. */
+  .portal-signature {
+    --p: clamp(0, calc((var(--open) - 0.5) / 0.5), 1);
+    position: fixed;
+    inset-inline: 0;
+    bottom: -0.16em;
+    z-index: -1;
+    pointer-events: none;
+    text-align: center;
+    /* Uma linha só, e larga o bastante para tocar quase as duas bordas:
+       acima disso o nome sai da tela e o corte lê como defeito. */
+    font-size: min(9.8vw, 11rem);
+    font-weight: 700;
+    font-stretch: 110%;
+    line-height: 0.82;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: rgb(255 255 255 / 0.042);
+    opacity: var(--p);
+    transform: translateY(calc((1 - var(--p)) * 5vh))
+      scale(calc(1 + (1 - var(--p)) * 0.06));
+  }
+
+  /* A fresta: o filete que abre do centro para as bordas, e é ele que faz
+     a seção parecer uma porta e não um bloco que apareceu. */
+  .portal-seam {
+    transform: scaleX(var(--open));
+    transform-origin: center;
+    opacity: var(--open);
+  }
+
+  /* Os degraus da abertura. Cada peça tem sua janela dentro do mesmo
+     progresso — filete, convite, canais —, e é a defasagem que faz a
+     sala abrir em vez de acender de uma vez. Divisor literal de
+     propósito: `calc()` só divide por número escrito. */
+  .portal-stage {
+    opacity: var(--p, 1);
+    transform: translateY(calc((1 - var(--p, 1)) * 26px));
+    filter: blur(calc((1 - var(--p, 1)) * 5px));
+    will-change: opacity, transform;
+  }
+
+  .portal-stage-1 {
+    --p: clamp(0, calc((var(--open) - 0.12) / 0.44), 1);
+  }
+
+  .portal-stage-2 {
+    --p: clamp(0, calc((var(--open) - 0.28) / 0.46), 1);
+  }
+
   /* Linha de razão: separa itens de uma lista e acende no hover. */
   .row-rule {
     @apply relative;
@@ -385,5 +474,15 @@
   .row-slide:hover > *,
   .row-slide:focus-within > * {
     transform: none !important;
+  }
+
+  /* O portal continua abrindo, porque a cortina é o que torna a sala final
+     legível — mas abre só por luz: nada desliza, nada escala, nada desfoca.
+     O acender segue preso ao scroll, e scroll é gesto do leitor. */
+  .portal-signature,
+  .portal-seam,
+  .portal-stage {
+    transform: none !important;
+    filter: none !important;
   }
 }

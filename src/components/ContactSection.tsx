@@ -1,14 +1,17 @@
-import { cn } from "@/lib/utils";
+import { useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { useInView } from "@/hooks/use-in-view";
+import { useScrollOpen } from "@/hooks/use-scroll-open";
 import { Linkedin, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionTitle from "@/components/SectionTitle";
 
 const ContactSection = () => {
   const { t } = useLanguage();
-  const invitation = useInView<HTMLDivElement>(0.2);
-  const channels = useInView<HTMLDivElement>(0.15);
+
+  // A abertura do portal: um único progresso de rolagem comanda a cortina,
+  // a assinatura e os dois degraus de conteúdo.
+  const section = useRef<HTMLElement>(null);
+  useScrollOpen(section);
 
   const rows = [
     {
@@ -29,18 +32,30 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="section pb-32">
+    <section
+      ref={section}
+      id="contact"
+      className="portal section relative flex min-h-[100svh] flex-col justify-center pb-32"
+    >
+      {/* A sala: cortina do tamanho da tela e o nome em tamanho de fachada.
+          Nada aqui carrega informação — se a página fosse impressa em preto
+          chapado, o contato continuaria inteiro. */}
+      <div aria-hidden="true" className="portal-curtain" />
+      <p aria-hidden="true" className="portal-signature max-md:hidden">
+        Igor P. Ribeiro
+      </p>
+
       <div className="container">
+        {/* A fresta: abre do centro para as bordas antes do título. */}
+        <div
+          aria-hidden="true"
+          className="portal-seam mb-16 h-px w-full bg-gradient-to-r from-transparent via-white/25 to-transparent"
+        />
+
         <SectionTitle>{t("contact.title")}</SectionTitle>
 
         <div className="grid gap-14 lg:grid-cols-12">
-          <div
-            ref={invitation.ref}
-            className={cn(
-              "reveal lg:col-span-5",
-              invitation.inView && "is-in"
-            )}
-          >
+          <div className="portal-stage portal-stage-1 lg:col-span-5">
             <p className="type-body max-w-[46ch]">{t("contact.description")}</p>
 
             <div className="mt-10 flex flex-wrap gap-3.5">
@@ -78,13 +93,7 @@ const ContactSection = () => {
           {/* Os canais como registro: etiqueta acima, valor abaixo. Os ícones
               saíram — o rótulo já diz o que cada linha é, e três ícones
               genéricos só repetiam a informação em desenho. */}
-          <div
-            ref={channels.ref}
-            className={cn(
-              "reveal border-t border-white/[0.08] lg:col-span-7",
-              channels.inView && "is-in"
-            )}
-          >
+          <div className="portal-stage portal-stage-2 border-t border-white/[0.08] lg:col-span-7">
             {rows.map(({ label, value, href }) => {
               const content = (
                 <>
