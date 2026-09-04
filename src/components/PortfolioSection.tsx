@@ -1,73 +1,51 @@
-import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 import { useInView } from "@/hooks/use-in-view";
 import SectionTitle from "@/components/SectionTitle";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 
-import plamont from "../assets/images/plamont.webp";
-import icoop from "../assets/images/icoop.webp";
-import lecardEstudante from "../assets/images/lecardEstudante.webp";
-
-type Project = {
+type SystemType = {
   id: number;
   title: string;
-  company: string;
-  image: string;
+  scope: string;
   description: string;
   tags: string[];
-  descriptionImage: string;
 };
 
 const PortfolioSection = () => {
   const { t } = useLanguage();
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const { ref, inView } = useInView<HTMLDivElement>(0.1);
 
-  const projects: Project[] = [
+  // Entregas para clientes sao cobertas por sigilo contratual: esta secao
+  // descreve a natureza dos sistemas e as decisoes tecnicas, sem nome de
+  // cliente, marca ou captura de tela de produto de terceiros.
+  const systems: SystemType[] = [
     {
       id: 1,
-      title: t("portfolio.project1.title"),
-      company: t("portfolio.project1.company"),
-      image:
-        "https://play-lh.googleusercontent.com/Dp-58zoEZgWFWF_Cm5FC1sCUnWxiT37JXDbvHDRcVrmEq-rAMr8OExZsVRkGTOhCGj0=w5120-h2880-rw",
-      description: t("portfolio.project1.description"),
-      descriptionImage:
-        "https://play-lh.googleusercontent.com/lBqpdlEkVA9pj1nvo1AsRxobXVnf6hKmTv7GC7igwT0TFqFyAg68mAfch67pbwEzlIKk=w5120-h2880-rw",
-
-      tags: ["React Native", "Node.js", "Firebase", "Redux"],
+      title: t("portfolio.system1.title"),
+      scope: t("portfolio.system1.scope"),
+      description: t("portfolio.system1.description"),
+      tags: ["React Native", "Redux", "Node.js", "Firebase", "CodePush"],
     },
     {
       id: 2,
-      title: t("portfolio.project2.title"),
-      company: t("portfolio.project2.company"),
-      image: icoop,
-      descriptionImage: icoop,
-      description: t("portfolio.project2.description"),
-      tags: ["React Native", "Firebase", "Contentfull", "Redux"],
+      title: t("portfolio.system2.title"),
+      scope: t("portfolio.system2.scope"),
+      description: t("portfolio.system2.description"),
+      tags: ["React Native", "Redux", "Contentful", "OneSignal", "OAuth"],
     },
     {
       id: 3,
-      title: t("portfolio.project3.title"),
-      company: t("portfolio.project3.company"),
-      image: plamont,
-      descriptionImage: plamont,
-      description: t("portfolio.project3.description"),
-      tags: ["React Native", "RealmDB", "Zustand"],
+      title: t("portfolio.system3.title"),
+      scope: t("portfolio.system3.scope"),
+      description: t("portfolio.system3.description"),
+      tags: ["React Native", "RealmDB", "Zustand", "Offline-first"],
     },
     {
       id: 4,
-      title: t("portfolio.project4.title"),
-      company: t("portfolio.project4.company"),
-      image: lecardEstudante,
-      descriptionImage: lecardEstudante,
-      description: t("portfolio.project4.description"),
-      tags: ["React Native", "Firebase", "OneSignal", "Mobx"],
+      title: t("portfolio.system4.title"),
+      scope: t("portfolio.system4.scope"),
+      description: t("portfolio.system4.description"),
+      tags: ["React Native", "MobX", "Firebase", "REST"],
     },
   ];
 
@@ -76,95 +54,40 @@ const PortfolioSection = () => {
       <div className="container">
         <SectionTitle>{t("portfolio.title")}</SectionTitle>
 
-        <div ref={ref} className="grid sm:grid-cols-2 gap-6 lg:gap-8">
-          {projects.map((project, index) => (
-            <button
-              key={project.id}
-              type="button"
-              onClick={() => setSelectedProject(project)}
-              className="group pane pane-interactive overflow-hidden text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        <p className="type-body text-muted-foreground measure">
+          {t("portfolio.intro")}
+        </p>
+
+        <div
+          ref={ref}
+          className="mt-10 lg:mt-12 grid sm:grid-cols-2 gap-6 lg:gap-8"
+        >
+          {systems.map((system, index) => (
+            <article
+              key={system.id}
+              className={cn(
+                "pane p-6 sm:p-8 reveal-lit",
+                inView && "is-in"
+              )}
+              style={{ transitionDelay: `${index * 120}ms` }}
             >
-              {/* Momento focal: a tela acende quando a vitrine entra em cena. */}
-              <div className="h-64 lg:h-80 overflow-hidden bg-background">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  loading="lazy"
-                  className={cn(
-                    "reveal-lit w-full h-full object-cover",
-                    "group-hover:scale-[1.03] group-hover:duration-500",
-                    inView && "is-in"
-                  )}
-                  style={{ transitionDelay: `${index * 140}ms` }}
-                />
-              </div>
+              <p className="type-label text-muted-dim">{system.scope}</p>
+              <h3 className="mt-2.5 type-title">{system.title}</h3>
 
-              <div className="p-6">
-                <h3 className="type-title">{project.title}</h3>
-                {/* Ash e não vermelho: dentro de painel o Signal Red não
-                    alcança 4.5:1 em corpo pequeno. */}
-                <p className="mt-2.5 type-label text-muted-dim">
-                  {project.company}
-                </p>
+              <p className="mt-4 type-body text-muted-foreground">
+                {system.description}
+              </p>
 
-                {/* As tags saíram do diálogo para a face do card: elas são o
-                    que faz alguém decidir abrir o projeto, não o que se lê
-                    depois de aberto. */}
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <li key={tag}>
-                      <span className="chip chip-caps">{tag}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </button>
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {system.tags.map((tag) => (
+                  <li key={tag}>
+                    <span className="chip chip-caps">{tag}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
           ))}
         </div>
-
-        <Dialog
-          open={!!selectedProject}
-          onOpenChange={() => setSelectedProject(null)}
-        >
-          {selectedProject && (
-            <DialogContent
-              className="sm:max-w-3xl p-0 gap-0 overflow-hidden max-h-[90vh] shadow-overlay-drop
-                [&>button]:z-20 [&>button]:right-4 [&>button]:top-4 [&>button]:rounded-full
-                [&>button]:bg-background/80 [&>button]:backdrop-blur-sm [&>button]:p-2 [&>button]:opacity-90"
-            >
-              <div className="bg-secondary shrink-0">
-                <img
-                  src={selectedProject.descriptionImage || selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full max-h-[240px] sm:max-h-[420px] object-contain"
-                />
-              </div>
-
-              <div className="p-6 sm:p-8 overflow-y-auto">
-                <DialogHeader className="space-y-2">
-                  <p className="type-label text-muted-foreground">
-                    {selectedProject.company}
-                  </p>
-                  <DialogTitle className="type-display-sub text-left">
-                    {selectedProject.title}
-                  </DialogTitle>
-                </DialogHeader>
-
-                <p className="mt-6 type-body text-muted-foreground measure">
-                  {selectedProject.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mt-8">
-                  {selectedProject.tags.map((tag) => (
-                    <span key={tag} className="chip chip-caps">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </DialogContent>
-          )}
-        </Dialog>
       </div>
     </section>
   );

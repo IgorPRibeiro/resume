@@ -63,7 +63,7 @@ Nome publicado: **Igor P. Ribeiro**. Nenhuma identidade visual, logotipo, paleta
 
 **Real e disponível no repositório:**
 - Foto pessoal: `src/assets/images/i.png`
-- Capturas dos projetos: `src/assets/images/icoop.png`, `plamont.png`, `lecardEstudante.png`
+- Sem capturas de tela de produtos de clientes: a seção de projetos descreve tipos de sistema, sem marca, nome de cliente ou print (sigilo contratual).
 - Captura do próprio site: `src/assets/images/site.png`
 - Ícones de tecnologia: `src/assets/icons/` (React Native, Node, Android, iOS, Next, TypeScript, Java, Go)
 - Descrições técnicas detalhadas dos quatro projetos, em EN e PT, em `src/context/LanguageContext.tsx`

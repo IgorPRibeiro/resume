@@ -320,56 +320,60 @@ const translations: Translations = {
 
   // Portfolio Section
   "portfolio.title": {
-    en: "Work Projects",
-    pt: "Projetos de trabalho",
+    en: "Types of Systems I Built",
+    pt: "Tipos de sistemas que construí",
   },
-  "portfolio.project1.title": {
-    en: "Loja Conceito ( Android - Tablet)",
-    pt: "Loja Conceito ( Android - Tablet)",
+  "portfolio.intro": {
+    en: "Client deliverables are covered by confidentiality agreements, so I describe them by the type of system, the problem solved and the technical decisions — with no client names, brands or product screenshots. Details can be discussed in an interview, within what my agreements allow.",
+    pt: "As entregas para clientes são cobertas por acordos de confidencialidade, então descrevo por tipo de sistema, problema resolvido e decisões técnicas — sem nome de cliente, marca ou captura de tela de produto. Detalhes podem ser conversados em entrevista, no limite do que meus acordos permitem.",
   },
-  "portfolio.project1.description": {
-    en: "E-Commerce built in React-Native. Created to meet the rules of a cooperative,this e-commerce has several business rules, from interest calculations for products based on payment condition, order editing, to payment with PIX. Using technologies like Redux for global app data management, order receipt download, and Firebase for monitoring payment status; Main technologies: Redux; Firebase; CodePush (instant updates)",
-    pt: "E-commerce desenvolvido em React-Native. Criado para atender às regras de uma cooperativa, este e-commerce possui diversas regras de negócio, desde cálculos de juros para produtos com base na condição de pagamento, edição de pedidos, até pagamento com PIX.Uso de tecnologias como Redux para gerenciamento de dados globais do app, download de comprovante de pedido e Firebase para monitoramento do status de pagamento. Principais tecnologias: Redux, Firebase, CodePush (atualizações instantâneas)",
+  "portfolio.system1.title": {
+    en: "B2B mobile commerce app for tablet",
+    pt: "App de compras B2B para tablet",
   },
-  "portfolio.project1.company": {
-    en: "Globasys",
-    pt: "Globasys",
+  "portfolio.system1.scope": {
+    en: "Android · in-store sales",
+    pt: "Android · venda em loja",
   },
-  "portfolio.project2.title": {
-    en: "ICoop ( Android - IOS )",
-    pt: "ICoop ( Android - IOS )",
+  "portfolio.system1.description": {
+    en: "Sales application for use at the counter, with heavy business rules: price and interest calculation by payment terms, order editing, instant payment, receipt generation and payment-status monitoring. Global state with Redux and over-the-air releases to fix issues without waiting for store review.",
+    pt: "Aplicação de vendas para uso no balcão, com forte carga de regras de negócio: cálculo de preço e juros por condição de pagamento, edição de pedido, pagamento instantâneo, geração de comprovante e monitoramento do status do pagamento. Estado global com Redux e publicação over-the-air para corrigir falhas sem esperar revisão de loja.",
   },
-  "portfolio.project2.company": {
-    en: "Globalsys",
-    pt: "Globalsys",
+  "portfolio.system2.title": {
+    en: "Self-service SuperApp",
+    pt: "SuperApp de autoatendimento",
   },
-  "portfolio.project2.description": {
-    en: "Support in a SuperApp created in React-Native, for both Android and iOS. Inthis application, the user will receive fresh news about the cooperative,including events, and can make purchases with various payment methods through the app, as well as get information about coffee prices. The user can create a new account or log in via social networks (Facebook or Gmail). The app is also aimed at company employees, who can sign and download contracts, view purchase history, and make payments. Several technologies were used, such as Redux for global information management, CodePush for immediate updates, OneSignal for notifications, among others.Main technologies used: Redux,Firebase, CodePush, OneSignal.",
-    pt: "Suporte em um SuperApp criado em React-Native, tanto para Android quanto iOS. Neste aplicativo, o usuário recebe notícias atualizadas sobre a cooperativa, incluindo eventos, e pode realizar compras com diversos métodos de pagamento, além de consultar preços do café. O usuário pode criar uma nova conta ou fazer login via redes sociais (Facebook ou Gmail). O app também é voltado para colaboradores da empresa, que podem assinar e baixar contratos, visualizar histórico de compras e efetuar pagamentos. Principais tecnologias utilizadas: Redux, Firebase, CodePush, OneSignal.",
+  "portfolio.system2.scope": {
+    en: "Android + iOS · relationship and services",
+    pt: "Android + iOS · relacionamento e serviços",
   },
-  "portfolio.project3.title": {
-    en: "Plamont (Android - IOS)",
-    pt: "Plamont (Android - IOS)",
+  "portfolio.system2.description": {
+    en: "Multi-profile app joining content, purchases and document handling in one place: news and events feed from a headless CMS, purchase flow with several payment methods, price lookup, contract signing and download, transaction history, sign-up and social login, plus segmented push notifications.",
+    pt: "App multiperfil que reúne conteúdo, compras e documentos em um só lugar: feed de notícias e eventos vindo de CMS headless, fluxo de compra com vários meios de pagamento, consulta de preços, assinatura e download de contratos, histórico de transações, cadastro e login social, além de notificações push segmentadas.",
   },
-  "portfolio.project3.company": {
-    en: "Globalsys",
-    pt: "Globalsys",
+  "portfolio.system3.title": {
+    en: "Offline-first field inspection app",
+    pt: "App de inspeção de campo offline-first",
   },
-  "portfolio.project3.description": {
-    en: "It is used for creating inspections and security reportis in online and offline mode, loading all necessary information upon logging into the app, so that the user can go to an area without internet access and then send this data.",
-    pt: "Ele é usado para criar inspeções e relatórios de segurança no modo online e offline, carregando todas as informações necessárias ao efetuar login no aplicativo, para que o usuário possa ir até uma área sem acesso à internet e então enviar esses dados.",
+  "portfolio.system3.scope": {
+    en: "Android + iOS · field operations and safety",
+    pt: "Android + iOS · operação de campo e segurança",
   },
-  "portfolio.project4.title": {
-    en: "LeCard Estudante (Android - IOS)",
-    pt: "LeCard Estudante (Android - IOS)",
+  "portfolio.system3.description": {
+    en: "Tool for filling in inspections and safety reports in areas with no connectivity. All the data needed for the day is pre-loaded at login into a local database; forms, photos and evidence are stored on the device and synced when the connection returns, with conflict and retry handling.",
+    pt: "Ferramenta para preencher inspeções e relatórios de segurança em áreas sem conectividade. Todos os dados necessários para o dia são pré-carregados no login em banco local; formulários, fotos e evidências ficam no dispositivo e sincronizam quando a conexão volta, com tratamento de conflito e reenvio.",
   },
-  "portfolio.project4.company": {
-    en: "Globalsys",
-    pt: "Globalsys",
+  "portfolio.system4.title": {
+    en: "Prepaid card balance and statement app",
+    pt: "App de saldo e extrato de cartão pré-pago",
   },
-  "portfolio.project4.description": {
-    en: "The Estudante - Le Card app was developed using React Native to deliver a native-like, cross-platform experience for users. The app allows students who use the Le Card Student Card to easily check their balance and view their recent transactions.",
-    pt: "O aplicativo Estudante - Le Card foi desenvolvido utilizando React Native para proporcionar uma experiência nativa e multiplataforma aos usuários. A aplicação permite que estudantes que utilizam o cartão Le Card Estudante consultem o saldo e as últimas transações realizadas com seu cartão, de forma prática e acessível.",
+  "portfolio.system4.scope": {
+    en: "Android + iOS · benefits and payments",
+    pt: "Android + iOS · benefícios e pagamentos",
+  },
+  "portfolio.system4.description": {
+    en: "Consumer app for cardholders to check available balance, daily limits and recent transactions. Focus on a light onboarding, clear reading of financial data on small screens and reactive state so balance and statement stay consistent after each refresh.",
+    pt: "App de consumo para portadores consultarem saldo disponível, limites diários e últimas transações. Foco em onboarding leve, leitura clara de dado financeiro em tela pequena e estado reativo para manter saldo e extrato consistentes após cada atualização.",
   },
 
   // Open Source Section
