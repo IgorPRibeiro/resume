@@ -22,6 +22,46 @@ interface LanguageContextProps {
 }
 
 const translations: Translations = {
+
+  // Interactive presentation and portfolio
+  "visual.specialty": { en: "Mobile developer.", pt: "Desenvolvedor mobile." },
+  "visual.foundation": { en: "Full-stack by foundation.", pt: "Full-stack na essência." },
+  "visual.intro": { en: "I build applications for the real world. From the interface to offline data, from native integrations to store release.", pt: "Construo aplicativos para o mundo real. Da interface aos dados offline, das integrações nativas à publicação nas lojas." },
+  "visual.follow": { en: "The work behind the interface", pt: "O trabalho por trás da interface" },
+  "visual.interface": { en: "Interface", pt: "Interface" },
+  "visual.offline": { en: "Offline data", pt: "Dados offline" },
+  "visual.delivery": { en: "Delivery", pt: "Entrega" },
+  "visual.release": { en: "Build · OTA · Store", pt: "Build · OTA · Loja" },
+  "visual.local": { en: "Stored on the device", pt: "Salvo no dispositivo" },
+  "visual.screen.interface": { en: "Made for people.", pt: "Feito para pessoas." },
+  "visual.screen.offline": { en: "Works beyond Wi-Fi.", pt: "Além do Wi-Fi." },
+  "visual.screen.delivery": { en: "Ready for the world.", pt: "Pronto para o mundo." },
+  "visual.screen.subtitle": { en: "Field inspection · illustrative interface", pt: "Inspeção de campo · interface ilustrativa" },
+  "visual.record": { en: "Inspection", pt: "Inspeção" },
+  "visual.record.interface": { en: "Clear at every step", pt: "Clareza em cada etapa" },
+  "visual.record.offline": { en: "Saved locally", pt: "Salva localmente" },
+  "visual.record.delivery": { en: "Available in the app", pt: "Disponível no app" },
+  "visual.evidence": { en: "Evidence", pt: "Evidências" },
+  "visual.attached": { en: "Photos and attachments", pt: "Fotos e anexos" },
+  "visual.action.interface": { en: "Designed for touch", pt: "Pensado para o toque" },
+  "visual.action.offline": { en: "Ready to synchronize", pt: "Pronto para sincronizar" },
+  "visual.action.delivery": { en: "From build to release", pt: "Do build à publicação" },
+  "visual.illustration": { en: "Conceptual composition · no client data", pt: "Composição conceitual · sem dados de clientes" },
+  "visual.explore": { en: "Explore the layers of mobile development", pt: "Explore as camadas do desenvolvimento mobile" },
+  "visual.description.interface": { en: "Interfaces that bring complex services into a clear mobile experience. React Native, Android and iOS.", pt: "Interfaces que transformam serviços complexos em uma experiência mobile clara. React Native, Android e iOS." },
+  "visual.description.offline": { en: "Local storage, retry handling and synchronization. The work continues when the connection stops.", pt: "Armazenamento local, reenvio e sincronização. O trabalho continua quando a conexão para." },
+  "visual.description.delivery": { en: "The work goes beyond the code: native integrations, OTA updates and releases on the app stores.", pt: "O trabalho vai além do código: integrações nativas, atualizações OTA e publicação nas lojas." },
+  "visual.related": { en: "Explore related work", pt: "Explorar trabalho relacionado" },
+  "work.heading": { en: "Real problems.\nWorking software.", pt: "Problemas reais.\nSoftware em operação." },
+  "work.intro": { en: "Mobile systems I helped build, from business rules to everyday use.", pt: "Sistemas mobile que ajudei a construir, das regras de negócio ao uso no dia a dia." },
+  "work.details": { en: "Technical decisions", pt: "Decisões técnicas" },
+  "work.discuss": { en: "Talk about this experience", pt: "Conversar sobre essa experiência" },
+  "work.confidential": { en: "About confidentiality", pt: "Sobre confidencialidade" },
+  "work.1.summary": { en: "Complex sales rules, brought to the counter.", pt: "Regras de venda complexas, na rotina do balcão." },
+  "work.2.summary": { en: "Multiple services. One mobile experience.", pt: "Vários serviços. Uma experiência mobile." },
+  "work.3.summary": { en: "The connection stops. The work continues.", pt: "A conexão para. O trabalho continua." },
+  "work.4.summary": { en: "Financial information, clear at a glance.", pt: "Informação financeira, clara à primeira vista." },
+
   // Navigation
   "nav.about": {
     en: "About",

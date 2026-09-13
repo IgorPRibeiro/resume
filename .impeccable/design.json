@@ -209,11 +209,6 @@
         "purpose": "fade-in do menu mobile de tela cheia."
       },
       {
-        "name": "focal-lit",
-        "value": "900ms cubic-bezier(0.16, 1, 0.3, 1), stagger 140ms",
-        "purpose": "A vitrine acendendo. brightness(0.28) saturate(0.3) blur(10px) e scale(1.03) → luz plena, nas telas de aplicativo do painel de portfólio. É a única coreografia da página."
-      },
-      {
         "name": "rule-draw",
         "value": "600ms cubic-bezier(0.16, 1, 0.3, 1), delay 120ms",
         "purpose": "O filete vermelho do título traçado da esquerda (scaleX 0 → 1) quando o painel entra em cena."
@@ -227,6 +222,21 @@
         "name": "scroll-behavior",
         "value": "smooth",
         "purpose": "Toda navegação da página é rolagem ancorada suave, declarada em html."
+      },
+      {
+        "name": "mobile-assembly-arrive",
+        "value": "1.1s cubic-bezier(.16,1,.3,1)",
+        "purpose": "Entrada única do dispositivo ilustrativo; só com no-preference."
+      },
+      {
+        "name": "mobile-assembly-pointer",
+        "value": "650ms cubic-bezier(.16,1,.3,1)",
+        "purpose": "Inclinação pelo ponteiro fino; variáveis zeradas com movimento reduzido."
+      },
+      {
+        "name": "mobile-assembly-layers",
+        "value": "800ms cubic-bezier(.16,1,.3,1)",
+        "purpose": "Transformação dos planos por seleção; scroll abre planos no estado Interface. Sem transição sob movimento reduzido."
       }
     ],
     "breakpoints": [
@@ -249,6 +259,22 @@
       {
         "name": "2xl",
         "value": "1536px"
+      },
+      {
+        "name": "portfolio-compact-max",
+        "value": "380px"
+      },
+      {
+        "name": "portfolio-stack-max",
+        "value": "700px"
+      },
+      {
+        "name": "portfolio-tablet-max",
+        "value": "1023px"
+      },
+      {
+        "name": "portfolio-wide-min",
+        "value": "1500px"
       }
     ]
   },
@@ -294,12 +320,11 @@
       "css": ".ds-row { position: relative; display: grid; gap: 16px; max-width: 720px; padding: 40px 0; font-family: Archivo, sans-serif; } .ds-row::after { content: \"\"; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: hsl(var(--border, 240 3.7% 15.9%)); } .ds-row::before { content: \"\"; position: absolute; bottom: 0; left: 0; z-index: 1; width: 100%; height: 1px; background: hsl(var(--primary, 0 90% 58%)); transform: scaleX(0); transform-origin: left center; transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-row:hover::before { transform: scaleX(1); } .ds-row-head { display: flex; align-items: flex-start; gap: 16px; color: hsl(var(--muted-foreground, 240 5% 64.9%)); transition: color 300ms cubic-bezier(0, 0, 0.2, 1); } .ds-row:hover .ds-row-head { color: hsl(var(--foreground, 0 0% 98%)); } .ds-row-title { margin: 0; font-size: 1.375rem; font-weight: 600; line-height: 1.35; letter-spacing: -0.005em; color: hsl(var(--foreground, 0 0% 98%)); } .ds-row-text { margin: 0; font-size: 1.0625rem; line-height: 1.7; color: hsl(var(--muted-foreground, 240 5% 64.9%)); }"
     },
     {
-      "name": "Project Pane",
-      "kind": "card",
-      "refersTo": "project-pane",
-      "description": "Painel de projeto: a tela do app sangrando no topo (256px, 320px no desktop), título e empresa em etiqueta Ash abaixo. Acende na entrada e abre o diálogo de detalhe.",
-      "html": "<div class=\"ds-project-pane\" role=\"button\" tabindex=\"0\"><div class=\"ds-project-media\"></div><div class=\"ds-project-body\"><h3 class=\"ds-project-title\">Plamont (Android · iOS)</h3><p class=\"ds-project-company\">Globalsys</p></div></div>",
-      "css": ".ds-project-pane { box-sizing: border-box; max-width: 360px; overflow: hidden; border-radius: 8px; background: hsl(var(--secondary, 240 3.7% 15.9%)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06); font-family: Archivo, sans-serif; cursor: pointer; transition: transform 300ms cubic-bezier(0, 0, 0.2, 1), box-shadow 300ms cubic-bezier(0, 0, 0.2, 1); } .ds-project-pane:hover { transform: translateY(-5px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 16px 40px -12px rgba(0, 0, 0, 0.7); } .ds-project-pane:focus-visible { outline: none; box-shadow: 0 0 0 2px hsl(240 10% 3.9%), 0 0 0 4px hsl(240 4.9% 83.9%); } .ds-project-media { height: 320px; overflow: hidden; background: linear-gradient(135deg, hsl(240 6% 22%), hsl(240 8% 12%)); } .ds-project-body { padding: 24px; } .ds-project-title { margin: 0 0 8px; font-size: 1.375rem; font-weight: 600; line-height: 1.35; letter-spacing: -0.005em; color: hsl(var(--foreground, 0 0% 98%)); } .ds-project-company { margin: 0; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: hsl(var(--muted-foreground, 240 5% 64.9%)); }"
+      "name": "Portfolio Technical Details",
+      "kind": "custom",
+      "description": "Detalhes nativos das linhas editoriais de sistemas; substituem o antigo cartão com captura e modal. O terceiro sistema começa aberto.",
+      "html": "<details class=\"ds-work-details\"><summary>Decisões técnicas <span aria-hidden=\"true\">⌄</span></summary><p>Descrição técnica do sistema.</p></details>",
+      "css": ".ds-work-details { font-family: Archivo, sans-serif; color: hsl(var(--foreground, 0 0% 98%)); } .ds-work-details summary { display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; gap: 20px; min-height: 44px; font-size: .8125rem; } .ds-work-details summary::-webkit-details-marker { display: none; } .ds-work-details summary span { transition: transform .25s; } .ds-work-details[open] summary span { transform: rotate(180deg); } .ds-work-details summary:focus-visible { outline: 2px solid hsl(var(--ring, 240 4.9% 83.9%)); outline-offset: 5px; border-radius: 3px; } .ds-work-details p { font-size: .9375rem; line-height: 1.75; color: hsl(var(--muted-foreground, 240 5% 64.9%)); padding: 10px 0 12px; }"
     },
     {
       "name": "Skill Tile",
@@ -358,8 +383,8 @@
         "section": "colors"
       },
       {
-        "name": "The One Choreography Rule",
-        "body": "A página tem uma única coreografia, e ela é a vitrine acendendo: quando o painel de portfólio entra em cena, cada tela de aplicativo sai de brightness(0.28) saturate(0.3) blur(10px) em escala 1.03 para a luz plena, em 900ms com cubic-bezier(0.16, 1, 0.3, 1) e 140ms de intervalo entre elas. Nenhuma outra seção ganha entrada coreografada. O apoio permitido é de três tipos e só esses: o filete do título traçado da esquerda, a lista de habilidades escalonada como lista, e o estado de hover de qualquer controle. Reinterpretar toda seção rolada como uma lista escalonada é quebra de sistema.",
+        "name": "Hero and Portfolio Motion",
+        "body": "Na abertura, dispositivo ilustrativo com entrada breve, inclinação pelo ponteiro fino e planos selecionáveis; scroll abre os planos no estado Interface. Movimento reduzido desliga entrada, ponteiro, abertura por scroll e transições da composição, mantendo seleções estáticas. Portfólio editorial sem entrada de capturas iluminadas.",
         "section": "elevation"
       },
       {

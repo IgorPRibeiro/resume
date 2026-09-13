@@ -222,6 +222,14 @@ Rua preta, vidro grafite, letra de osso — e um único vermelho de letreiro que
 
 ## Layout
 
+### Extensão aplicada: apresentação e portfólio (2026-09-13)
+
+Nesta dupla de seções, as regras locais abaixo prevalecem sobre os padrões históricos de painel, tipografia, raios e coreografia descritos no restante do documento. A direção continua escura, com Archivo e vermelho pontual. A abertura apresenta nome, especialidade mobile com base full-stack e composição técnica pessoal; o portfólio vem imediatamente depois. Ferramentas e laboratório ficam para uma etapa posterior. Fonte: `src/components/portfolio-visual.css`, `HeroSection.tsx`, `MobileComposition.tsx`, `PortfolioSection.tsx` e `src/pages/Index.tsx`.
+
+O hero usa duas colunas iguais, gap de 4% e topo de 145px. O nome ocupa duas linhas em Archivo, peso 650, largura 110%, `clamp(4.5rem, 7.5vw, 6rem)`, entrelinha .94 e tracking -.035em. A descrição mede até 43ch. O palco ilustrativo tem 450px de altura. A faixa inferior conecta tecnologias e link para projetos. O portfólio usa linhas editoriais com duas colunas iguais, gap de 8%, borda superior e 42px de respiro vertical; sua introdução termina 60px antes da lista. A seção tem padding de 76px acima e 100px abaixo.
+
+Até 1023px, o topo passa a 125px, o palco a 410px e o dispositivo a escala .83. Até 700px, hero, introdução e linhas de projeto empilham em uma coluna, preservando texto e controles: topo de 120px, palco de 405px, escala .82 e projetos com padding de seção 70px/60px e 32px por linha. Até 380px, o palco mede 350px e a escala cai a .76; os botões usam .75rem. A partir de 1500px, o palco mede 485px e a escala é 1.1. O texto continua alinhado à esquerda nestas seções.
+
 **Este sistema é composto em 1440px e reduzido.** A intenção nasce no desktop; o mobile é a mesma vitrine vista de perto. Nada é reordenado, nada é escondido, nada ganha uma composição própria — a redução é fiel.
 
 A página é uma pilha de painéis de largura total sobre a rua preta. Dentro de cada faixa há uma casca de no máximo 1440px, e dentro dela uma calçada: margem lateral de `clamp(20px, 5vw, 96px)`. O conteúdo se organiza numa grade de 12 colunas com calhas de 32px. Texto corrido nunca ultrapassa 68 caracteres, o que no desktop significa 6 a 7 colunas — o vazio ao lado do parágrafo é parte da composição, não sobra.
@@ -266,9 +274,11 @@ O resto é comportamento. Quando o ponteiro chega num painel interativo, ele sob
 
 **The Red Bloom Rule.** O `accent-bloom` só toca elementos que já são vermelhos em repouso. Painel cinza nunca ganha halo vermelho — isso transformaria o letreiro em enfeite.
 
-**The Two Moments Rule.** A página tem **duas** coreografias focais, e cada uma acontece uma vez só: **a vitrine acendendo**, no meio, e **o portal abrindo**, no fim. Nenhuma terceira entra.
+**The Two Moments Rule.** Os momentos focais são a composição mobile na abertura e o portal de contato no fim. O portfólio editorial atual não usa a antiga entrada de capturas iluminadas.
 
-A primeira é o portfólio: quando o painel entra em cena, cada tela de aplicativo sai de `brightness(0.28) saturate(0.3) blur(10px)` em escala 1.03 para a luz plena, em 900ms com `cubic-bezier(0.16, 1, 0.3, 1)` e 140ms de intervalo entre elas. É o único lugar da página onde a luz literalmente acende, porque é o único lugar onde a luz existe. Quem repetir o `reveal-lit` fora do portfólio apaga esse momento.
+A primeira é a composição mobile ilustrativa: entrada de 1.1s, inclinação pelo ponteiro com transição de 650ms e mudança das camadas em 800ms, usando `cubic-bezier(.16,1,.3,1)`. Perspectiva de 1200px, montagem de 236×350px e planos deslocados em profundidade tornam interface, dados e entrega legíveis como partes do mesmo trabalho. `--unfold`, limitado entre 0 e 1 pela posição do palco no scroll, aumenta a abertura dos planos no estado Interface. As seleções Dados offline e Entrega têm posições próprias. O ponteiro fino altera a rotação; toque usa os botões. Não há ciclo contínuo ou rolagem artificial.
+
+Com `prefers-reduced-motion: reduce`, as variáveis de ponteiro e scroll ficam em zero, a entrada é removida e as transições da composição são desligadas. As seleções continuam funcionando e trocam imediatamente para suas posições estáticas; a perspectiva base permanece. Os controles e o texto explicativo ficam fora do palco decorativo, sem depender de movimento.
 
 A segunda é o contato, e ela **fecha** a página em vez de destacar um painel: a última seção não entra na rua, ela apaga a rua. Uma cortina fixa do tamanho da tela — preto da casa, com o letreiro brilhando de baixo e o contraponto frio no alto — acende por baixo de todo o conteúdo enquanto o contato sobe, e a página inteira vira essa sala até o rodapé. Junto sobem a assinatura (o nome em tamanho de fachada, branco a 4,2%, rente ao chão e cortado pela borda de baixo), a fresta (o filete que abre do centro para as bordas) e os dois degraus de conteúdo — convite em 0,12–0,56 do progresso, canais em 0,28–0,74.
 
@@ -321,6 +331,18 @@ São **painéis**. O termo importa: um painel é uma montagem terminada, não um
 - **Style:** cabeçalho fixo de 72px, Void a 90% com desfoque funcional de 4px e fio inferior de 1px em Graphite. À esquerda, retrato circular de 40px e o nome em Title; à direita, cinco links em Label (caixa alta, 0,8125rem, tracking 0.08em) com 32px de calha, seguidos do seletor de idioma.
 - **States:** link em **Ash** em repouso e **Bone** no hover, com transição de 150ms. A navegação é etiqueta de vitrine: ela recua para que o vermelho fique reservado ao letreiro. Não há indicador de seção ativa.
 - **Mobile:** abaixo de 1024px os links viram menu de tela cheia (Void sólido a partir dos 72px do cabeçalho), itens empilhados e centralizados em Title, entrando com fade de 500ms. O seletor de idioma permanece na barra, ao lado do botão de menu, e a rolagem da página trava enquanto o menu está aberto.
+
+### Hero e composição mobile
+
+O nome e a especialidade formam o primeiro bloco de leitura. O link principal leva a `#portfolio`: fundo claro, texto escuro, raio de 4px, altura mínima de 48px e vermelho no hover. O contato é um link textual secundário. Estes controles e os links/`summary` do portfólio usam outline de 2px em `--ring`, com offset de 5px.
+
+O dispositivo é uma ilustração identificada por legenda externa, não uma captura de cliente. A tela clara (`#f2f1ee`) com texto `#18181c`, moldura de 5px e raio de 30px é uma exceção localizada de material; os planos técnicos escuros (`#121215`) têm raio de 16px. A seleção destaca o contorno em `primary` e o plano em `#1a1517`. JetBrains Mono é solicitado somente nas etiquetas técnicas do palco e linhas de dados. Esses valores pertencem à ilustração, não substituem o tema nem a tipografia principal.
+
+Três botões nativos de pelo menos 48px — Interface, Dados offline e Entrega — expõem `aria-pressed`, com linha vermelha de 2px na opção ativa. Atualizam a composição e a descrição bilíngue em região `aria-live="polite"`; a ilustração tem `aria-hidden="true"`. O link relacionado aponta respectivamente para `#system-2`, `#system-3` e `#system-1`. A seleção não abre modal nem simula um aplicativo de produção.
+
+### Portfólio editorial
+
+Quatro artigos descrevem tipos de sistema sob sigilo, sem marcas, nomes de clientes ou capturas. Cada linha apresenta título, escopo abaixo dele, tecnologias em lista textual sem pílulas, resumo e decisões técnicas em `details`/`summary` nativos. O terceiro sistema começa expandido; os demais fechados. Cada artigo tem link de contato. O destino de uma âncora recebe fundo `hsl(var(--primary) / .045)` e margem de scroll de 24px. O aviso de confidencialidade é outro `details`, inicialmente fechado. Não há grade de cartões com screenshots nem diálogo de projeto neste fluxo.
 
 ### Pane Title
 O componente de assinatura. Headline em `wdth 105`, `inline-block` para que o filete acompanhe a largura do texto, com um retângulo de 64×4px em Signal Red posicionado 10px abaixo do bloco. Abre todo painel. Nunca centralizado no desktop, nunca sem o filete, nunca com o filete em outra cor.

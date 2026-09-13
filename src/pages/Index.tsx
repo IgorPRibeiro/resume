@@ -1,3 +1,4 @@
+import "@/components/portfolio-visual.css";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
@@ -50,11 +51,11 @@ const Index = () => {
       {/* A rua fica em z-0; tudo que se lê passa por cima dela. */}
       <main id="content" className="relative z-10">
         <HeroSection />
-        <AboutSection />
+        <PortfolioSection />
         <ExperienceSection />
         <SkillsSection />
+        <AboutSection />
         <ServicesSection />
-        <PortfolioSection />
         <OpenSourceSection />
         <ContactSection />
       </main>

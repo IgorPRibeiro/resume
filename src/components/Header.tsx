@@ -64,11 +64,11 @@ const Header: React.FC = () => {
   // do navegador esperam um link quando o destino é uma seção da própria
   // página. O recorte sob o cabeçalho fixo é do `scroll-padding-top`.
   const navItems = [
+    { label: t("nav.portfolio"), href: section("#portfolio") },
     { label: t("nav.about"), href: section("#about") },
     { label: t("nav.experience"), href: section("#experience") },
     { label: t("nav.skills"), href: section("#skills") },
-    { label: t("nav.tools"), href: "/ferramentas", accent: true },
-    { label: t("nav.portfolio"), href: section("#portfolio") },
+    { label: t("nav.tools"), href: "/ferramentas", accent: false },
   ];
 
   // O seletor de idioma é um par segmentado, não um menu: são duas opções e

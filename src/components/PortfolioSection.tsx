@@ -1,7 +1,5 @@
 import { useLanguage } from "@/context/LanguageContext";
-import { cn } from "@/lib/utils";
-import { useInView } from "@/hooks/use-in-view";
-import SectionTitle from "@/components/SectionTitle";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 
 type SystemType = {
   id: number;
@@ -13,7 +11,6 @@ type SystemType = {
 
 const PortfolioSection = () => {
   const { t } = useLanguage();
-  const { ref, inView } = useInView<HTMLDivElement>(0.1);
 
   // Entregas para clientes sao cobertas por sigilo contratual: esta secao
   // descreve a natureza dos sistemas e as decisoes tecnicas, sem nome de
@@ -50,47 +47,39 @@ const PortfolioSection = () => {
   ];
 
   return (
-    <section id="portfolio" className="section">
+    <section id="portfolio" className="work-section">
       <div className="container">
-        <SectionTitle>{t("portfolio.title")}</SectionTitle>
-
-        <p className="type-body text-muted-foreground measure">
-          {t("portfolio.intro")}
-        </p>
-
-        <div
-          ref={ref}
-          className="mt-10 lg:mt-12 grid sm:grid-cols-2 gap-6 lg:gap-8"
-        >
-          {systems.map((system, index) => (
-            <article
-              key={system.id}
-              className={cn(
-                "pane p-6 sm:p-8 reveal-lit",
-                inView && "is-in"
-              )}
-              style={{ transitionDelay: `${index * 120}ms` }}
-            >
-              <p className="type-label text-muted-dim">{system.scope}</p>
-              <h3 className="mt-2.5 type-title">{system.title}</h3>
-
-              <p className="mt-4 type-body text-muted-foreground">
-                {system.description}
-              </p>
-
-              <ul className="mt-6 flex flex-wrap gap-2">
-                {system.tags.map((tag) => (
-                  <li key={tag}>
-                    <span className="chip chip-caps">{tag}</span>
-                  </li>
-                ))}
-              </ul>
+        <div className="work-introduction">
+          <h2>{t("work.heading")}</h2>
+          <p>{t("work.intro")}</p>
+        </div>
+        <div className="work-list">
+          {systems.map((system) => (
+            <article id={`system-${system.id}`} key={system.id} className="work-item">
+              <div className="work-item-heading">
+                <h3>{system.title}</h3>
+                <p className="type-label text-muted-foreground mt-4">{system.scope}</p>
+                <ul className="work-tags">
+                  {system.tags.map(tag => <li key={tag}>{tag}</li>)}
+                </ul>
+              </div>
+              <div className="work-item-body">
+                <p className="work-summary">{t(`work.${system.id}.summary`)}</p>
+                <details className="work-details" open={system.id === 3}>
+                  <summary>{t("work.details")}<ChevronDown size={18} aria-hidden="true" /></summary>
+                  <p>{system.description}</p>
+                </details>
+                <a className="work-contact" href="#contact">{t("work.discuss")}<ArrowUpRight size={16} aria-hidden="true" /></a>
+              </div>
             </article>
           ))}
         </div>
+        <details className="work-confidential">
+          <summary>{t("work.confidential")}<ChevronDown size={16} aria-hidden="true" /></summary>
+          <p>{t("portfolio.intro")}</p>
+        </details>
       </div>
     </section>
   );
 };
-
 export default PortfolioSection;
