@@ -1,0 +1,112 @@
+/* One opaque viewport; outgoing and incoming content never share the stage. */
+.editorial-home-shell { height:100dvh; min-height:0; overflow:hidden; }
+.editorial-home-shell > main { height:calc(100% - 65px); }
+.scene-deck { height:100%; display:flex; flex-direction:column; background:#e3e7eb; }
+.scene-stage { flex:1; min-height:0; overflow:hidden; background:#e3e7eb; transform-origin:50% 50%; }
+.scene-panel { height:100%; overflow:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#7c8082 transparent; outline:none; background:#e3e7eb; }
+.scene-panel[hidden] { display:none; }
+.scene-panel > section,.scene-panel > footer { min-height:100%; box-sizing:border-box; }
+.scene-panel > footer { border:0; }
+.scene-controls { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:0 26px; height:60px; flex:none; border-top:3px solid #1a1b1c; background:#e3e7eb; position:relative; z-index:2; }
+.scene-controls nav { display:flex; align-items:center; gap:2px; }
+.scene-controls nav button { width:30px; height:44px; display:grid; place-items:center; position:relative; }
+.scene-controls nav button > span:first-child { width:6px; height:6px; border-radius:50%; background:#747b7f; transition:transform .25s,background .25s; }
+.scene-controls nav button[aria-current] > span:first-child { background:#1a1b1c; transform:scale(1.65); }
+.scene-nav-label { position:absolute; bottom:46px; left:0; padding:8px 12px; font-size:10px; white-space:nowrap; background:#1a1b1c; color:#e3e7eb; opacity:0; pointer-events:none; }
+.scene-controls nav button:hover .scene-nav-label,.scene-controls nav button:focus-visible .scene-nav-label { opacity:1; }
+.scene-position { display:flex; align-items:center; justify-content:center; gap:20px; font-size:10px; text-transform:uppercase; }
+.scene-position > span { font-variant-numeric:tabular-nums; color:#555a5d; white-space:nowrap; }
+.scene-position strong { font-weight:500; max-width:38ch; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.scene-arrows { display:flex; gap:2px; }
+.scene-arrows button { width:44px; height:44px; display:grid; place-items:center; }
+.scene-arrows button:hover:enabled { background:#ff5f14; }
+.scene-arrows button:disabled { opacity:.3; cursor:default; }
+.scene-deck[data-phase=exit] .scene-stage { animation:scene-exit 350ms cubic-bezier(.55,0,1,.45) both; pointer-events:none; }
+.scene-deck[data-phase=enter] .scene-stage { animation:scene-enter 550ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes scene-exit { to { transform:scale(.94) translateY(-16px); clip-path:inset(50% 0); } }
+@keyframes scene-enter { from { transform:scale(1.04) translateY(24px); clip-path:inset(50% 0); } to { transform:scale(1) translateY(0); clip-path:inset(0); } }
+/* Introduction: a fitted editorial title, kept inside its own frame. */
+.scene-panel > .editorial-hero { display:flex; flex-direction:column; justify-content:space-between; }
+.scene-panel .hero-editorial-top { padding:25px 0 10px; }
+.scene-panel .editorial-wordmark { font-size:clamp(80px,min(17vw,26vh),330px); margin:15px -5px 20px!important; }
+.scene-panel .hero-rule { padding-block:18px; }
+/* System: the device becomes the visual focus of a dark technical room. */
+.scene-panel > .editorial-demonstration { border-top:0; border-bottom:0; }
+.scene-panel .editorial-demonstration > .project-visual { min-height:100%; }
+.scene-panel .editorial-demonstration .concept-device { scale:1.5; }
+.scene-panel .demo-data { justify-content:center; gap:50px; }
+.scene-panel .demo-orange { padding-block:36px; }
+/* Point of view: one statement, one reading plane. */
+.scene-panel > .editorial-statement { background:#1a1b1c; color:#e3e7eb; align-content:center; gap:8%; }
+.scene-panel .editorial-statement h2 { font-size:clamp(40px,6vw,100px); }
+.scene-panel .editorial-statement .ed-button { background:#ff5f14; color:#1a1b1c; }
+.scene-panel .editorial-statement a:focus-visible { outline-color:#e3e7eb; }
+/* Work: a gallery with two exhibits, contained beneath its heading. */
+.scene-panel > #selected-work { display:flex; flex-direction:column; }
+.scene-panel #selected-work .ed-section-heading { padding-block:28px; }
+.scene-panel #selected-work .editorial-work-grid { flex:1; }
+.scene-panel #selected-work .editorial-project { display:flex; flex-direction:column; }
+.scene-panel #selected-work .project-visual { min-height:230px; flex:1; }
+.scene-panel #selected-work .concept-device { scale:.82; }
+.scene-panel #selected-work .project-copy { padding:20px 28px; }
+.scene-panel #selected-work .project-copy h3 { font-size:clamp(23px,2vw,32px); margin:14px 0 10px; }
+.scene-panel #selected-work .project-copy .ed-text-link { margin-top:10px; }
+/* Expertise: a responsive index opposite its technical diagram. */
+.scene-panel > .editorial-expertise { border-bottom:0; }
+.scene-panel .expertise-index { min-height:100%; justify-content:center; }
+.scene-panel .expertise-options { margin-top:35px; padding-top:0; }
+.scene-panel .expertise-detail { display:flex; flex-direction:column; }
+.scene-panel .expertise-diagram { flex:1; }
+.scene-panel .expertise-description { padding-block:35px; }
+/* Principle: orange typographic poster. */
+.scene-panel > .editorial-principle { display:flex; flex-direction:column; justify-content:center; gap:35px; padding:7%; }
+.scene-panel .editorial-principle h2 { font-size:clamp(46px,8vw,130px); max-width:17ch; }
+.scene-panel .editorial-principle p { align-self:flex-end; max-width:48ch; }
+/* Process: a complete three-stage sequence, never a preview of the footer. */
+.scene-panel > .editorial-process { display:flex; flex-direction:column; }
+.scene-panel .process-steps { flex:1; }
+.scene-panel .process-steps article { justify-content:center; }
+.scene-panel .process-number { font-size:clamp(64px,10vw,160px); color:#555a5d; }
+.scene-panel .process-steps dl { margin-top:35px; }
+.scene-panel > .editorial-footer { display:flex; flex-direction:column; justify-content:space-between; }
+.scene-panel .editorial-footer-cta { padding-block:45px; }
+.scene-panel .editorial-footer-wordmark { font-size:clamp(70px,min(17vw,24vh),300px); }
+@media(max-width:1050px) { .scene-position strong { max-width:28ch; } .scene-panel .editorial-demonstration .concept-device { scale:1.12; } }
+@media(max-width:760px) {
+ .editorial-home-shell > main { height:calc(100% - 61px); }
+ .scene-controls { height:58px; padding:0 12px; gap:8px; }
+ .scene-controls nav { gap:0; }
+ .scene-controls nav button { width:19px; }
+ .scene-controls nav button > span:first-child { width:4px; height:4px; }
+ .scene-position { gap:0; font-size:9px; }
+ .scene-position strong { display:none; }
+ .scene-arrows button { width:36px; }
+ .scene-panel > .editorial-hero { justify-content:flex-start; }
+ .scene-panel .editorial-wordmark { font-size:17vw; margin:32px -3px 24px!important; }
+ .scene-panel .hero-editorial-top { display:contents; }
+ .scene-panel .platform-seal { width:88px; height:88px; font-size:18px; margin:26px 0; }
+ .scene-panel .hero-rule { margin-top:auto; }
+ .scene-panel .hero-meta { font-size:8px; }
+ .scene-panel .editorial-demonstration { grid-template-columns:55px 1fr; }
+ .scene-panel .editorial-demonstration > .project-visual { min-height:420px; }
+ .scene-panel .editorial-demonstration .concept-device { scale:1; }
+ .scene-panel .demo-data { gap:24px; }
+ .scene-panel .editorial-statement { display:flex; flex-direction:column; justify-content:center; gap:35px; padding:40px 24px; }
+ .scene-panel .editorial-statement h2 { font-size:42px; }
+ .scene-panel #selected-work .project-visual { min-height:410px; }
+ .scene-panel #selected-work .concept-device { scale:1; }
+ .scene-panel #selected-work .project-copy { padding:24px 20px; }
+ .scene-panel #selected-work .ed-section-heading { padding:30px 20px; }
+ .scene-panel .expertise-index { min-height:460px; }
+ .scene-panel .expertise-diagram { min-height:300px; }
+ .scene-panel .editorial-principle { padding:40px 24px; }
+ .scene-panel .editorial-principle h2 { font-size:45px; }
+ .scene-panel .editorial-principle p { align-self:start; }
+ .scene-panel .process-steps article { min-height:350px; }
+ .scene-panel .editorial-footer-wordmark { font-size:16vw; }
+ .scene-nav-label { display:none; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .scene-deck[data-phase] .scene-stage { animation:none; transform:none; clip-path:none; }
+ .scene-controls * { transition:none; }
+}

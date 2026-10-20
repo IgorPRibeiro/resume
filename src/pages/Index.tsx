@@ -1,68 +1,70 @@
-import "@/components/portfolio-visual.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
-import AmbientBackground from "@/components/AmbientBackground";
-import ScrollProgress from "@/components/ScrollProgress";
-import Header from "@/components/Header";
-import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import SkillsSection from "@/components/SkillsSection";
-import ServicesSection from "@/components/ServicesSection";
-import PortfolioSection from "@/components/PortfolioSection";
-import OpenSourceSection from "@/components/OpenSourceSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+import EditorialSite from "@/pages/EditorialSite";
+import "@/components/portfolio-visual.css";
 
-const Index = () => {
+export default function Index() {
   const { t } = useLanguage();
   const { hash } = useLocation();
+  const [entryState, setEntryState] = useState<"intro" | "zoom" | "done">(hash ? "done" : "intro");
 
-  // Voltando das ferramentas por `/#about`, quem entrega o endereço é o
-  // roteador, e não o navegador: o recorte precisa acontecer depois que a
-  // página existe. O respiro sob o cabeçalho fixo é do `scroll-padding-top`.
   useEffect(() => {
-    if (!hash) return undefined;
+    if (entryState !== "intro") return undefined;
+    const enterOnKey = (event: KeyboardEvent) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        setEntryState("zoom");
+      }
+    };
+    window.addEventListener("keydown", enterOnKey);
+    return () => window.removeEventListener("keydown", enterOnKey);
+  }, [entryState]);
 
-    const target = document.querySelector(hash);
-    if (!target) return undefined;
+  useEffect(() => {
+    if (entryState !== "zoom") return undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setEntryState("done");
+    }
+    return undefined;
+  }, [entryState]);
 
-    const frame = requestAnimationFrame(() => target.scrollIntoView());
-    return () => cancelAnimationFrame(frame);
-  }, [hash]);
 
-  return (
-    <div className="relative min-h-screen bg-background text-foreground">
-      {/* Cinco itens de navegação antes do conteúdo: o teclado precisa de
-          um atalho, e ele só aparece quando recebe foco. */}
-      <a
-        href="#content"
-        className="type-label sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-md focus:bg-primary focus:px-5 focus:py-3 focus:text-primary-foreground focus:shadow-accent-bloom"
-      >
-        {t("a11y.skip")}
-      </a>
+  useEffect(() => {
+    if (entryState === "done") {
+      document.getElementById("content")?.focus({ preventScroll: true });
+      return;
+    }
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previous; };
+  }, [entryState]);
+  return <>
+      {entryState !== "done" && (
+        <button
+          type="button"
+          className="portfolio-entry"
+          data-state={entryState}
+          onAnimationEnd={(event) => {
+            if (event.animationName === "device-enter") setEntryState("done");
+          }}
+          onClick={() => setEntryState((state) => state === "intro" ? "zoom" : state)}
+          aria-label={t("entry.action")}
+        >
+          <span className="portfolio-entry-name">Igor P. Ribeiro<span>.</span></span>
+          <span className="portfolio-entry-phone" aria-hidden="true">
+            <span className="portfolio-entry-speaker" />
+            <span className="portfolio-entry-mark">IPR</span>
+            <span className="portfolio-entry-copy">{t("visual.specialty")}<br />{t("visual.foundation")}</span>
+            <span className="portfolio-entry-tap">{t("entry.prompt")} <span>↗</span></span>
+            <span className="portfolio-entry-home" />
+          </span>
+          <span className="portfolio-entry-hint">{t("entry.hint")}</span>
+        </button>
+      )}
 
-      <AmbientBackground />
-      <ScrollProgress />
-
-      <Header />
-
-      {/* A rua fica em z-0; tudo que se lê passa por cima dela. */}
-      <main id="content" className="relative z-10">
-        <HeroSection />
-        <PortfolioSection />
-        <ExperienceSection />
-        <SkillsSection />
-        <AboutSection />
-        <ServicesSection />
-        <OpenSourceSection />
-        <ContactSection />
-      </main>
-
-      <Footer />
+    <div {...(entryState !== "done" ? { inert: "" } : {})}>
+      <EditorialSite home />
     </div>
-  );
-};
-
-export default Index;
+  </>;
+}

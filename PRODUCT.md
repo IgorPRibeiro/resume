@@ -25,7 +25,7 @@ Full-stack (Node.js, Go, Java, Next.js) sustenta a posição como capacidade de 
 ## Operating Context
 
 - O visitante avalia em minutos, quase sempre no desktop durante triagem e no celular quando o link chega por mensagem.
-- O site é uma página única com navegação por âncoras: Hero, Sobre, Habilidades, O Que Eu Faço, Portfólio, Contato, Rodapé.
+- Arquitetura aprovada em 19/10/2026: home editorial e páginas /work, /work/:slug, /about, /services, /process e /contact; ferramentas em /ferramentas. A entrada com celular e zoom permanece.
 - Idioma inicial é detectado pelo navegador (`pt` → português, qualquer outro → inglês) e pode ser trocado manualmente no cabeçalho.
 - O portfólio mostra trabalho feito como colaborador da Globalsys Soluções em T.I., não projetos autorais — o enquadramento precisa deixar isso claro sem parecer que os apps são produtos próprios.
 - Deploy atual em Vercel: https://igpr-resume.vercel.app/
@@ -57,7 +57,7 @@ Full-stack (Node.js, Go, Java, Next.js) sustenta a posição como capacidade de 
 
 ## Brand Commitments
 
-Nome publicado: **Igor P. Ribeiro**. Nenhuma identidade visual, logotipo, paleta ou tipografia foi declarada vinculante pelo Igor nesta rodada — decisão em aberto para o trabalho de direção visual.
+Nome publicado: **Igor P. Ribeiro**. Direção aprovada em 19/10/2026: referência CROX, fundo cinza claro #e3e7eb, tinta #1a1b1c, laranja #ff5f14, bordas estruturais e tipografia editorial. Archivo como alternativa disponível para títulos e Geist para texto. A entrada escura com celular e zoom central é preservada.
 
 ## Evidence on Hand
 
@@ -78,3 +78,7 @@ Nome publicado: **Igor P. Ribeiro**. Nenhuma identidade visual, logotipo, paleta
 3. **Paridade bilíngue absoluta.** Nada entra no site sem existir em EN e PT; o inglês é a versão de maior consequência.
 4. **Nunca fabricar credencial.** Números, depoimentos, clientes e prazos só entram vindos do Igor.
 5. **Uma visita é curta.** Especialidade, prova e caminho de contato precisam estar acessíveis sem exigir leitura completa da página.
+
+## Atualização de capacidades (confirmada pelo Igor)
+
+Interface: React Native, Tailwind CSS, StyleSheet, styled-components. Integrações nativas: Android, iOS, Java, Kotlin, Swift. Estado e dados offline: Redux, MobX, Zustand, SQLite, Async Storage. Entrega: lojas de aplicativos e Expo. Backend: Node.js e Java. Infraestrutura: Oracle Cloud Infrastructure (OCI). Ferramentas acessíveis apenas pelo cabeçalho, sem cena própria na home.

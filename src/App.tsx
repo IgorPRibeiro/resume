@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/context/LanguageContext";
 import Index from "./pages/Index";
+import EditorialSite from "./pages/EditorialSite";
 import Ferramentas from "./pages/Ferramentas";
 import NotFound from "./pages/NotFound";
 
@@ -21,6 +22,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            {["/work", "/work/:slug", "/about", "/services", "/process", "/contact"].map(path => <Route key={path} path={path} element={<EditorialSite />} />)}
             <Route path="/ferramentas" element={<Ferramentas />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

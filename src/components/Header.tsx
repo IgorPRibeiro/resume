@@ -1,208 +1,36 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
-import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import "@/components/editorial.css";
 
-/**
- * Um item de navegação é âncora quando o destino está na mesma página e
- * rota quando não está. Misturar os dois num `<a>` só faria a rota recarregar
- * o app inteiro para chegar onde o roteador já sabe ir.
- */
-const NavAnchor = ({
-  href,
-  className,
-  onClick,
-  children,
-}: {
-  href: string;
-  className?: string;
-  onClick?: () => void;
-  children: React.ReactNode;
-}) =>
-  href.startsWith("/") ? (
-    <Link to={href} className={className} onClick={onClick}>
-      {children}
-    </Link>
-  ) : (
-    <a href={href} className={className} onClick={onClick}>
-      {children}
-    </a>
-  );
-
-const Header: React.FC = () => {
-  const { language, setLanguage, t } = useLanguage();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const isHome = useLocation().pathname === "/";
-
-  // Fora da página inicial, `#about` não leva a lugar nenhum: o recorte só
-  // existe depois que a raiz é montada, então o destino vira `/#about`.
-  const section = (hash: string) => (isHome ? hash : `/${hash}`);
-
-  const closeMobileMenu = () => setMobileMenuOpen(false);
-
-  // Com o menu de tela cheia aberto, a rua atrás dele não rola — e Esc fecha.
+export default function Header() {
+  const { t, language, setLanguage } = useLanguage();
+  const { pathname } = useLocation();
+  const [open, setOpen] = useState(false);
+  useEffect(() => { setOpen(false); }, [pathname]);
   useEffect(() => {
-    if (!mobileMenuOpen) return;
-
+    if (!open) return;
     const previous = document.body.style.overflow;
+    const background = [...document.querySelectorAll<HTMLElement>("main, footer")];
+    const previousInert = background.map(node => node.inert);
+    background.forEach(node => { node.inert = true; });
+    document.querySelector<HTMLElement>(".editorial-nav a")?.focus();
     document.body.style.overflow = "hidden";
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMobileMenuOpen(false);
-    };
-    document.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      document.body.style.overflow = previous;
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [mobileMenuOpen]);
-
-  // Âncoras de verdade, não botões: o teclado, o meio do mouse e o histórico
-  // do navegador esperam um link quando o destino é uma seção da própria
-  // página. O recorte sob o cabeçalho fixo é do `scroll-padding-top`.
-  const navItems = [
-    { label: t("nav.portfolio"), href: section("#portfolio") },
-    { label: t("nav.about"), href: section("#about") },
-    { label: t("nav.experience"), href: section("#experience") },
-    { label: t("nav.skills"), href: section("#skills") },
-    { label: t("nav.tools"), href: "/ferramentas", accent: false },
-  ];
-
-  // O seletor de idioma é um par segmentado, não um menu: são duas opções e
-  // o estado atual precisa ser legível sem abrir nada.
-  const languageToggle = (
-    <div
-      className="inline-flex flex-none items-center gap-0.5 rounded-full border border-white/[0.14] p-[3px]"
-      role="group"
-      aria-label={language === "pt" ? "Idioma" : "Language"}
-    >
-      {(["pt", "en"] as const).map((code) => (
-        <button
-          key={code}
-          type="button"
-          onClick={() => setLanguage(code)}
-          aria-pressed={language === code}
-          className={cn(
-            "type-micro rounded-full px-3 py-[7px] font-semibold uppercase tracking-[0.08em]",
-            "transition-colors duration-200 ease-out",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-            language === code
-              ? "bg-primary/[0.16] text-foreground"
-              : "text-muted-dim hover:bg-white/[0.06] hover:text-foreground"
-          )}
-        >
-          {code.toUpperCase()}
-        </button>
-      ))}
+    const close = (event: KeyboardEvent) => { if (event.key === "Escape") setOpen(false); };
+    window.addEventListener("keydown", close);
+    return () => { document.body.style.overflow = previous; background.forEach((node, index) => { node.inert = previousInert[index]; }); window.removeEventListener("keydown", close); };
+  }, [open]);
+  const links = [["/work", "ed.projects"], ["/about", "nav.about"], ["/services", "ed.services"], ["/process", "ed.process"], ["/ferramentas", "nav.tools"]];
+  return <header className="editorial-header">
+    <Link className="editorial-brand" to="/" aria-label="Igor P. Ribeiro">IPR<span aria-hidden="true">.</span></Link>
+    <nav className={open ? "editorial-nav is-open" : "editorial-nav"} aria-label={t("ed.menu")} id="editorial-navigation">
+      {links.map(([href, key]) => <NavLink key={href} to={href}>{t(key)}</NavLink>)}
+      <NavLink to="/contact" className="nav-contact">{t("ed.contact")}<ArrowUpRight size={15} aria-hidden="true" /></NavLink>
+    </nav>
+    <div className="editorial-languages" role="group" aria-label={t("ed.languages")}>
+      {(["pt", "en"] as const).map(code => <button key={code} onClick={() => setLanguage(code)} aria-pressed={language === code}>{code}</button>)}
     </div>
-  );
-
-  return (
-    <header className="fixed left-0 top-0 z-50 h-[72px] w-full border-b border-white/[0.07] bg-background/[0.72] backdrop-blur-[14px]">
-      <div className="container flex h-full items-center justify-between gap-6">
-        <NavAnchor
-          href={section("#top")}
-          className="type-title whitespace-nowrap rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-        >
-          Igor P. Ribeiro
-        </NavAnchor>
-
-        {/* Navegação em etiqueta — recua para Ash, acende em Bone */}
-        <nav className="hidden min-w-0 items-center gap-[clamp(10px,1.5vw,26px)] lg:flex">
-          {navItems.map((item) => (
-            <NavAnchor
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "type-label whitespace-nowrap rounded-sm transition-colors duration-150",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                item.accent
-                  ? "text-primary hover:text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {item.label}
-            </NavAnchor>
-          ))}
-
-          {languageToggle}
-
-          <NavAnchor
-            href={section("#contact")}
-            className="type-label flex-none whitespace-nowrap rounded-full border border-white/[0.16] px-4 py-2.5 text-foreground transition-[border-color,background-color,box-shadow] duration-200 hover:border-primary/60 hover:bg-primary/10 hover:shadow-accent-bloom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          >
-            {t("hero.cta")}
-          </NavAnchor>
-        </nav>
-
-        {/* Barra reduzida */}
-        <div className="flex items-center gap-2 lg:hidden">
-          {languageToggle}
-
-          <Button
-            variant="ghost"
-            size="pane-icon"
-            onClick={() => setMobileMenuOpen((open) => !open)}
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-nav"
-            aria-label={
-              mobileMenuOpen
-                ? language === "pt"
-                  ? "Fechar menu"
-                  : "Close menu"
-                : language === "pt"
-                ? "Abrir menu"
-                : "Open menu"
-            }
-          >
-            {mobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </Button>
-        </div>
-      </div>
-
-      {/* Menu de tela cheia: mesmos itens, mesma ordem, mesmo texto */}
-      {mobileMenuOpen && (
-        <div
-          id="mobile-nav"
-          className="animate-fade-in fixed inset-0 top-[72px] z-40 bg-background lg:hidden"
-        >
-          <nav className="container flex h-full flex-col items-center justify-center gap-8">
-            {navItems.map((item) => (
-              <NavAnchor
-                key={item.href}
-                href={item.href}
-                onClick={closeMobileMenu}
-                className={cn(
-                  "type-display-sub rounded-sm transition-colors duration-150",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                  item.accent
-                    ? "text-primary hover:text-foreground"
-                    : "text-foreground hover:text-primary"
-                )}
-              >
-                {item.label}
-              </NavAnchor>
-            ))}
-
-            <NavAnchor
-              href={section("#contact")}
-              onClick={closeMobileMenu}
-              className="type-label rounded-full border border-white/[0.16] px-6 py-3.5 text-foreground transition-[border-color,background-color] duration-200 hover:border-primary/60 hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            >
-              {t("hero.cta")}
-            </NavAnchor>
-          </nav>
-        </div>
-      )}
-    </header>
-  );
-};
-
-export default Header;
+    <button className="editorial-menu" aria-expanded={open} aria-controls="editorial-navigation" aria-label={t(open ? "ed.close" : "ed.menu")} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
+  </header>;
+}

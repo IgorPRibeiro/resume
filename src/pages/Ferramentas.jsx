@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
-import AmbientBackground from "@/components/AmbientBackground";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SectionTitle from "@/components/SectionTitle";
@@ -29,7 +28,7 @@ const Ferramentas = () => {
   }, [language]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground">
+    <div className="editorial-shell tools-shell">
       <a
         href="#content"
         className="type-label sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-md focus:bg-primary focus:px-5 focus:py-3 focus:text-primary-foreground focus:shadow-accent-bloom"
@@ -37,7 +36,6 @@ const Ferramentas = () => {
         {t("a11y.skip")}
       </a>
 
-      <AmbientBackground />
       <Header />
 
       <main id="content" className="relative z-10">
