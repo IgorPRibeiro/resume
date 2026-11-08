@@ -25,7 +25,7 @@ Full-stack (Node.js, Go, Java, Next.js) sustenta a posição como capacidade de 
 ## Operating Context
 
 - O visitante avalia em minutos, quase sempre no desktop durante triagem e no celular quando o link chega por mensagem.
-- Arquitetura aprovada em 19/10/2026: home editorial e páginas /work, /work/:slug, /about, /services, /process e /contact; ferramentas em /ferramentas. A entrada com celular e zoom permanece.
+- Arquitetura aprovada em 19/10/2026: home editorial e páginas /work, /work/:slug, /about, /services, /process e /contact; ferramentas em /ferramentas. A entrada com celular foi removida.
 - Idioma inicial é detectado pelo navegador (`pt` → português, qualquer outro → inglês) e pode ser trocado manualmente no cabeçalho.
 - O portfólio mostra trabalho feito como colaborador da Globalsys Soluções em T.I., não projetos autorais — o enquadramento precisa deixar isso claro sem parecer que os apps são produtos próprios.
 - Deploy atual em Vercel: https://igpr-resume.vercel.app/
@@ -57,7 +57,7 @@ Full-stack (Node.js, Go, Java, Next.js) sustenta a posição como capacidade de 
 
 ## Brand Commitments
 
-Nome publicado: **Igor P. Ribeiro**. Direção aprovada em 19/10/2026: referência CROX, fundo cinza claro #e3e7eb, tinta #1a1b1c, laranja #ff5f14, bordas estruturais e tipografia editorial. Archivo como alternativa disponível para títulos e Geist para texto. A entrada escura com celular e zoom central é preservada.
+Nome publicado: **Igor P. Ribeiro**. A direção anterior CROX, laranja e blueprint foi retirada por solicitação do Igor. Nova direção: neutros confortáveis, preto absoluto, texto claro e vermelho puro, sem tonalidades rosas, com Floema como referência e acentos inspirados na foto pessoal; apresentação direta com conteúdo substancial na home. Resumo, projetos, tecnologias de trabalho, experiência e formação ficam na página inicial. Ferramentas utilitárias continuam pelo cabeçalho. Animações entre seções são discretas e não bloqueiam a rolagem.
 
 ## Evidence on Hand
 
@@ -82,3 +82,7 @@ Nome publicado: **Igor P. Ribeiro**. Direção aprovada em 19/10/2026: referênc
 ## Atualização de capacidades (confirmada pelo Igor)
 
 Interface: React Native, Tailwind CSS, StyleSheet, styled-components. Integrações nativas: Android, iOS, Java, Kotlin, Swift. Estado e dados offline: Redux, MobX, Zustand, SQLite, Async Storage. Entrega: lojas de aplicativos e Expo. Backend: Node.js e Java. Infraestrutura: Oracle Cloud Infrastructure (OCI). Ferramentas acessíveis apenas pelo cabeçalho, sem cena própria na home.
+
+## Desktop e web — atualização confirmada pelo Igor
+
+Satro é um projeto da Globalsys com desenvolvimento desktop em Electron. O portfólio pode publicar esse nome e a tecnologia; não foram fornecidos detalhes de funcionalidades ou métricas. React também faz parte da atuação web. São cinco projetos publicados: os quatro relatos mobile e Satro.

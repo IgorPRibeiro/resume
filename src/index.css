@@ -6,28 +6,28 @@
   :root {
     color-scheme: dark;
 
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 90% 58%; /* Signal Red — o letreiro da vitrine */
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 93%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 93%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 93%;
+    --primary: 0 80% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 7%;
+    --secondary-foreground: 0 0% 93%;
+    --muted: 0 0% 7%;
+    --muted-foreground: 0 0% 67%;
     /* Ash em dois degraus: apoio dentro de painel e etiqueta em caps. */
-    --muted-strong: 240 6% 84%;
-    --muted-dim: 240 4% 46%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --muted-strong: 0 0% 78%;
+    --muted-dim: 0 0% 67%;
+    --accent: 0 0% 7%;
+    --accent-foreground: 0 0% 93%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 0 0% 17%;
+    --input: 0 0% 17%;
+    --ring: 0 80% 52%;
     --radius: 0.5rem;
 
     /* Sidebar vars */
