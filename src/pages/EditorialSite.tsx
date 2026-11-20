@@ -25,7 +25,7 @@ const projects = [
   { id: 2, slug: "self-service-superapp", category: "SUPERAPP", stack: "React Native / Redux / Contentful / OneSignal / OAuth" },
   { id: 3, slug: "offline-field-inspection", category: "OFFLINE-FIRST", stack: "React Native / RealmDB / Zustand" },
   { id: 4, slug: "prepaid-card", category: "FINTECH", stack: "React Native / MobX / Firebase / REST" },
-  { id: 5, slug: "satro-desktop", category: "DESKTOP", stack: "Electron" },
+  { id: 5, slug: "ai-assistant-platform", category: "FULL STACK", stack: "NestJS / PostgreSQL / Keycloak / React / Electron / Swift / Kotlin" },
 ];
 const specialties = [
   { key: "ed.native", body: "ed.nativebody", tech: "Android / iOS / Java / Kotlin / Swift", logos: [["Android", androidLogo], ["iOS", appleLogo], ["Java", javaLogo], ["Kotlin", kotlinLogo], ["Swift", swiftLogo]] },
