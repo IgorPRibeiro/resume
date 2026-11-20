@@ -14,6 +14,8 @@ const ExperienceSection = () => {
       company: "Globalsys Soluções em TI",
       period: t("experience.globalsys.period"),
       items: [
+        t("experience.globalsys.item7"),
+        t("experience.globalsys.item8"),
         t("experience.globalsys.item1"),
         t("experience.globalsys.item2"),
         t("experience.globalsys.item3"),

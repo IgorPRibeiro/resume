@@ -21,8 +21,8 @@ const ContactSection = () => {
     },
     {
       label: t("contact.phone"),
-      value: "+55 27 99516-2238",
-      href: "tel:+5527995162238",
+      value: "+351 920 539 739",
+      href: "tel:+351920539739",
     },
     {
       label: t("contact.workModel"),
